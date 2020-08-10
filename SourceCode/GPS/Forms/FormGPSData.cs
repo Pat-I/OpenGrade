@@ -35,7 +35,8 @@ namespace OpenGrade
             lblHDOP.Text = mf.HDOP;
 
             tboxSerialFromRelay.Text = mf.mc.serialRecvRelayRateStr;
-            tboxSerialToRelay.Text = mf.mc.relayRateData[0].ToString();
+            tboxSerialToRelay.Text = mf.mc.relayRateData[0] + "," + mf.mc.relayRateData[1]
+                 + "," + mf.mc.relayRateData[2]; //setpoint hi lo  
             tboxNMEASerial.Text = mf.recvSentenceSettings;
             //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
 

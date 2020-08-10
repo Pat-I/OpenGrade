@@ -15,6 +15,8 @@ namespace OpenGrade
 {
     public partial class FormGPS
     {
+       
+
         private void LoadGUI()
         {
             //set the flag mark button to red dot
@@ -208,6 +210,7 @@ namespace OpenGrade
 
                     cboxLastPass.Checked = false;
                     cboxRecLastOnOff.Checked = false;
+                    cboxLaserModeOnOff.Checked = false;
                     btnDoneDraw.Enabled = false;
                     btnDeleteLastPoint.Enabled = false;
                     btnStartDraw.Enabled = false;
@@ -302,6 +305,7 @@ namespace OpenGrade
                 metricToolStrip.Checked = false;
                 imperialToolStrip.Checked = true;
             }
+            CalculateMinMaxZoom();
         }
         private void btnGPSData_Click(object sender, EventArgs e)
         {
@@ -344,6 +348,12 @@ namespace OpenGrade
         {
             ct.zeroAltitude = pn.altitude;
         }
+
+        private void btnZeroAltitudeRef_Click(object sender, EventArgs e)
+        {
+            ct.zeroAltitudeRef = pn.altitude;
+        }
+
         private void btnStartDraw_Click(object sender, EventArgs e)
         {
             if (ct.ptList.Count > 5)
@@ -620,6 +630,7 @@ namespace OpenGrade
             Settings.Default.setMenu_isMetric = isMetric;
             Settings.Default.Save();
             lblSpeedUnits.Text = "kmh";
+            CalculateMinMaxZoom();
         }
         private void skyToolStripMenu_Click(object sender, EventArgs e)
         {
@@ -636,7 +647,7 @@ namespace OpenGrade
             Settings.Default.setMenu_isMetric = isMetric;
             Settings.Default.Save();
             lblSpeedUnits.Text = "mph";
-
+            CalculateMinMaxZoom();
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -938,9 +949,9 @@ namespace OpenGrade
             get
             {
                 if (pn.fixQuality == 0) return "Invalid";
-                else if (pn.fixQuality == 1) return "GPS fix";
-                else if (pn.fixQuality == 2) return "DGPS fix";
-                else if (pn.fixQuality == 3) return "PPS fix";
+                else if (pn.fixQuality == 1) return "GPS";
+                else if (pn.fixQuality == 2) return "DGPS";
+                else if (pn.fixQuality == 3) return "PPS";
                 else if (pn.fixQuality == 4) return "RTK fix";
                 else if (pn.fixQuality == 5) return "Flt RTK";
                 else if (pn.fixQuality == 6) return "Estimate";
@@ -1019,6 +1030,8 @@ namespace OpenGrade
 
             if (fiveSecondCounter++ > 100) { fiveSecondCounter = 0; }
 
+            //GPS Update rate
+            lblFixUpdateHz.Text = NMEAHz + " Hz " + FixQuality;
 
             //every half of a second update all status
             if (statusUpdateCounter > 4)
@@ -1068,6 +1081,7 @@ namespace OpenGrade
                     stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m";
                     lblAltitude.Text = Altitude;
                     btnZeroAltitude.Text = (pn.altitude - ct.zeroAltitude).ToString("N2");
+                    btnZeroAltitudeRef.Text = (pn.altitude - ct.zeroAltitudeRef).ToString("N2");
                 }
                 else  //Imperial Measurements
                 {
@@ -1078,6 +1092,7 @@ namespace OpenGrade
                     stripDistance.Text = Convert.ToString((UInt16)(userDistance * 3.28084)) + " ft";
                     lblAltitude.Text = AltitudeFeet;
                     btnZeroAltitude.Text = ((pn.altitude - ct.zeroAltitude)*glm.m2ft).ToString("N2");
+                    btnZeroAltitudeRef.Text = ((pn.altitude - ct.zeroAltitudeRef) * glm.m2ft).ToString("N2");
                 }
 
                 //not Metric/Standard units sensitive
@@ -1085,18 +1100,49 @@ namespace OpenGrade
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
 
+                
+
                 if (cutDelta == 9999)
                 {
                     lblCutDelta.Text = "--";
                     lblCutDelta.BackColor = Color.Lavender;
                     pbarCutAbove.Value = 0;
                     pbarCutBelow.Value = 0;
+
+                    //Output to serial for blade control 
+                    mc.relayRateData[mc.cutValve] = (byte)(100);
+                    RateRelayDataOutToPort();
+
+                    //
                 }
                 else
-                {
+                {   if (cutDelta < -9.9) //par Pat
+
+                    {
+                        mc.relayRateData[mc.cutValve] = (byte)(1);
+                        RateRelayDataOutToPort();
+                    }
+                    else
+                    {
+                        if (cutDelta > 9.9)
+                        {
+                            mc.relayRateData[mc.cutValve] = (byte)(199);
+                            RateRelayDataOutToPort();
+                        }
+                        else
+                        {
+                            mc.relayRateData[mc.cutValve] = (byte)((cutDelta * 10) + 100);
+                            RateRelayDataOutToPort();
+                        }
+                    }
+
+
+
+
                     if (isMetric)  //metric or imperial
                     {
                         lblCutDelta.Text = cutDelta.ToString("N1");
+                        
                     }
                     else
                     {
@@ -1136,6 +1182,6 @@ namespace OpenGrade
             //wait till timer fires again.     
         }
 
-
+       
     }//end class
 }//end namespace

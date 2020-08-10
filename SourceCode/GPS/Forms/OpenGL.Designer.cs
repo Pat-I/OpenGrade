@@ -45,7 +45,7 @@ namespace OpenGrade
 
                 //draw the field ground images
                 worldGrid.DrawFieldSurface();
-                
+
                 ////Draw the world grid based on camera position
                 gl.Disable(OpenGL.GL_DEPTH_TEST);
                 gl.Disable(OpenGL.GL_TEXTURE_2D);
@@ -73,7 +73,7 @@ namespace OpenGrade
 
                 //draw contour line if button on 
                 //if (ct.isContourBtnOn)
-                
+
 
                 // draw the current and reference AB Lines
                 if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
@@ -306,7 +306,7 @@ namespace OpenGrade
                     {
                         //if (mc.workSwitchValue == 1)
                     }
-                }                
+                }
 
                 //stop the timer and calc how long it took to do calcs and draw
                 frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
@@ -344,10 +344,10 @@ namespace OpenGrade
 
             // Set The Blending Function For Translucency
             gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
- 
+
             //gl.Disable(OpenGL.GL_CULL_FACE);
             gl.CullFace(OpenGL.GL_BACK);
-            
+
             //set the camera to right distance
             SetZoom();
 
@@ -403,7 +403,7 @@ namespace OpenGrade
             gl.Translate(0, 0, -cameraDistanceZ);
             gl.Translate(-centerX, -centerY, 0);
 
-            gl.Color(1,1,1);
+            gl.Color(1, 1, 1);
 
             //reset cut delta for frame
             cutDelta = 9999;
@@ -412,17 +412,26 @@ namespace OpenGrade
             int ptCnt = ct.ptList.Count;
             gl.LineWidth(4);
 
+
+            if (cboxLaserModeOnOff.Checked)
+            {
+
+                cutDelta = (pn.altitude - ct.zeroAltitude) * 100;
+
+            }
+
+
             if (ptCnt > 0)
             {
-                minDist = 1000000;
-                int ptCount = ct.ptList.Count-1;
+                minDist = 1000000; //original is 1000000
+                int ptCount = ct.ptList.Count - 1;
 
                 //find the closest point to current fix
                 for (int t = 0; t < ptCount; t++)
                 {
                     double dist = ((pn.easting - ct.ptList[t].easting) * (pn.easting - ct.ptList[t].easting))
                                     + ((pn.northing - ct.ptList[t].northing) * (pn.northing - ct.ptList[t].northing));
-                    if (dist < minDist) { minDist = dist; closestPoint = t;  }
+                    if (dist < minDist) { minDist = dist; closestPoint = t; }
                 }
 
                 //draw the ground profile
@@ -467,7 +476,7 @@ namespace OpenGrade
                 //draw last pass if rec on
                 if (cboxRecLastOnOff.Checked & ct.ptList[closestPoint].cutAltitude > 0)
                     ct.ptList[closestPoint].lastPassAltitude = pn.altitude;
-                
+
                 //draw if on
                 if (cboxLastPass.Checked)
                 {
@@ -497,12 +506,12 @@ namespace OpenGrade
                             gl.Vertex(ct.drawList[i].easting, (((ct.drawList[i].northing - centerY) * altitudeWindowGain) + centerY), 0);
                         gl.End();
 
-                        if (slopeDraw < vehicle.minSlope)  gl.Color(0.25f, 0.970f, 0.350f);
+                        if (slopeDraw < vehicle.minSlope) gl.Color(0.25f, 0.970f, 0.350f);
                         else gl.Color(0.915f, 0.0f, 0.970f);
                         gl.Begin(OpenGL.GL_LINES);
                         //for (int i = 0; i < cutCnt; i++)
-                            gl.Vertex(ct.drawList[cutCnt - 1].easting, (((ct.drawList[cutCnt - 1].northing - centerY) * altitudeWindowGain) + centerY), 0);
-                            gl.Vertex(screen2FieldPt.easting, ((( screen2FieldPt.northing - centerY) * altitudeWindowGain) + centerY), 0);
+                        gl.Vertex(ct.drawList[cutCnt - 1].easting, (((ct.drawList[cutCnt - 1].northing - centerY) * altitudeWindowGain) + centerY), 0);
+                        gl.Vertex(screen2FieldPt.easting, (((screen2FieldPt.northing - centerY) * altitudeWindowGain) + centerY), 0);
                         gl.End();
 
                         gl.Color(1.0f, 1.0f, 0.0f);
@@ -514,7 +523,7 @@ namespace OpenGrade
                     }
                 }
 
-                if (minDist < 15)
+                if (minDist < (vehicle.gradeDistFromLine * vehicle.gradeDistFromLine)) // original is 15, meter form the line scare, for 5 meter put 25
                 {
                     //draw the actual elevation lines and blade
                     gl.LineWidth(8);
@@ -560,15 +569,30 @@ namespace OpenGrade
                     gl.Vertex(closestPoint, (((pn.altitude - centerY) * altitudeWindowGain) + centerY), 0);
                     gl.End();
 
+
+
+
                     //calculate blade to guideline delta
                     //double temp = (double)closestPoint / (double)count2;
-                    if (ct.ptList[closestPoint].cutAltitude > 0)
+                    if (cboxLaserModeOnOff.Checked)
                     {
-                        //in cm
-                        cutDelta = (pn.altitude - ct.ptList[closestPoint].cutAltitude)*100;
+
+                        cutDelta = (pn.altitude - ct.zeroAltitude) * 100;
+
+                    }
+                    else
+                    {
+                        if (ct.ptList[closestPoint].cutAltitude > 0)
+                        {
+                            //in cm
+                            cutDelta = (pn.altitude - ct.ptList[closestPoint].cutAltitude) * 100;
+                        }
                     }
                 }
             }
+
+
+
         }
 
         private void openGLControlBack_MouseMove(object sender, MouseEventArgs e)
@@ -582,7 +606,19 @@ namespace OpenGrade
             screen2FieldPt.northing = ((double)screenPt.Y) * (double)cameraDistanceZ / (openGLControlBack.Height * altitudeWindowGain);
             screen2FieldPt.northing += centerY;
 
-            stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + screen2FieldPt.northing.ToString("N3");
+            if (maxFieldX == 0)
+            {
+                stripTopoLocation.Text = " 0 " + ": " + " 0.000" + ": " + " 0.0";
+            }
+            else
+            {
+                if (ct.ptList.Count > 0)
+                {
+                    if (isMetric) stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + screen2FieldPt.northing.ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) * 100).ToString("N1");
+                    else stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + ((screen2FieldPt.northing) / .0254 / 12).ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) / .0254).ToString("N1");
+                }
+                else stripTopoLocation.Text = " 0 " + ": " + " 0.000" + ": " + " 0.0";
+            }
 
             if (ct.isDrawingRefLine)
             {
@@ -671,9 +707,14 @@ namespace OpenGrade
                 if (cameraDistanceZ < 10) cameraDistanceZ = 10;
                 if (cameraDistanceZ > 6000) cameraDistanceZ = 6000;
 
+                maxFieldY = (maxFieldY + vehicle.viewDistAboveGnd);
+                minFieldY = (minFieldY - vehicle.viewDistUnderGnd);
+
+
                 centerX = (maxFieldX + minFieldX) / 2.0;
-                centerY = (maxFieldY + minFieldY) / 2.0;
-                stripMinMax.Text=minFieldY.ToString("N2") + ":" + maxFieldY.ToString("N2");
+                centerY = ((maxFieldY) + (minFieldY)) / 2.0;
+                if (isMetric) stripMinMax.Text=(minFieldY + vehicle.viewDistUnderGnd).ToString("N2") + ":" + (maxFieldY - vehicle.viewDistAboveGnd).ToString("N2");
+                else stripMinMax.Text = ((minFieldY + vehicle.viewDistUnderGnd)/.0254/12).ToString("N2") + ":" + ((maxFieldY - vehicle.viewDistAboveGnd)/.0254/12).ToString("N2");
             }
         }
 

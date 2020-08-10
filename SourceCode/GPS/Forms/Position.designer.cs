@@ -93,7 +93,8 @@ namespace OpenGrade
                 if (timerPn++ == 36)
                 {
                     et = (1 / (hzTime * 0.000025));
-                    if (et > 4 && et < 8) fixUpdateHz = 5;
+                    if (et > 4 && et < 7) fixUpdateHz = 5;
+                    if (et > 7 && et < 9) fixUpdateHz = 8;
                     if (et > 9 && et < 13) fixUpdateHz = 10;
                     if (et > 1.2 && et < 3) fixUpdateHz = 2;
                     if (et > 0.8 && et < 1.2) fixUpdateHz = 1;

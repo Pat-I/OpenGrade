@@ -45,6 +45,7 @@ namespace OpenGrade
         public bool isContourOn, isContourBtnOn;
         public double slope = 0.002;
         public double zeroAltitude = 0;
+        public double zeroAltitudeRef = 0;
 
         public List<CContourPt> ptList = new List<CContourPt>();
 

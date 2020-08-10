@@ -961,6 +961,7 @@ namespace OpenGrade
 
             cboxLastPass.Checked = false;
             cboxRecLastOnOff.Checked = false;
+            cboxLaserModeOnOff.Checked = false;
 
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsCloseField;
@@ -999,6 +1000,7 @@ namespace OpenGrade
             lblDrawSlope.Text = "*";
 
             cboxLastPass.Checked = false;
+            cboxLaserModeOnOff.Checked = false;
             cboxRecLastOnOff.Checked = false;
 
             //change images to reflect on off

@@ -79,6 +79,20 @@ namespace OpenGrade
                     writer.WriteLine("MaxSteerAngle," + Properties.Vehicle.Default.setVehicle_maxSteerAngle.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("MaxAngularVelocity," + Properties.Vehicle.Default.setVehicle_maxAngularVelocity.ToString(CultureInfo.InvariantCulture));
 
+                    writer.WriteLine("Pwm Gain Up," + Properties.Vehicle.Default.setVehicle_pwmGainUp.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Pwm Gain Down," + Properties.Vehicle.Default.setVehicle_pwmGainDown.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Pwm Min Up," + Properties.Vehicle.Default.setVehicle_pwmMinUp.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Pwm Min Down," + Properties.Vehicle.Default.setVehicle_pwmMinDown.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Pwm Max Up," + Properties.Vehicle.Default.setVehicle_pwmMaxUp.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Pwm Max Down," + Properties.Vehicle.Default.setVehicle_pwmMaxDown.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Integral Multiplier," + Properties.Vehicle.Default.setVehicle_integralMultiplier.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Deadband," + Properties.Vehicle.Default.setVehicle_deadband.ToString(CultureInfo.InvariantCulture));
+
+                    writer.WriteLine("ViewDistUnderGnd," + Properties.Vehicle.Default.setVehicle_ViewDistUnderGnd.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("ViewDistAboveGnd," + Properties.Vehicle.Default.setVehicle_ViewDistAboveGnd.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("GradeDistFromLine," + Properties.Vehicle.Default.setVehicle_GradeDistFromLine.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("MaxCuttingDepth," + Properties.Vehicle.Default.setVehicle_MaxCuttingDepth.ToString(CultureInfo.InvariantCulture));
+
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -209,11 +223,41 @@ namespace OpenGrade
                         Properties.Settings.Default.setAS_maxIntegral = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine();words = line.Split(',');
                         Properties.Settings.Default.setAS_countsPerDegree = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        
+
+                        line = reader.ReadLine(); // GoalPointLookAhead
+
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_maxSteerAngle = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_maxAngularVelocity = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        //Valves settings
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_pwmGainUp = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_pwmGainDown = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_pwmMinUp = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_pwmMinDown = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_pwmMaxUp = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_pwmMaxDown = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_integralMultiplier = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_deadband = byte.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_ViewDistUnderGnd = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_ViewDistAboveGnd = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_GradeDistFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_MaxCuttingDepth = double.Parse(words[1], CultureInfo.InvariantCulture);
+
 
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -239,6 +283,22 @@ namespace OpenGrade
 
                         vehicle.toolWidth = Properties.Vehicle.Default.setVehicle_toolWidth;
                         vehicle.minSlope = Properties.Vehicle.Default.setVehicle_minSlope;
+
+                        vehicle.viewDistUnderGnd = Properties.Vehicle.Default.setVehicle_ViewDistUnderGnd;
+                        vehicle.viewDistAboveGnd = Properties.Vehicle.Default.setVehicle_ViewDistAboveGnd;
+                        vehicle.gradeDistFromLine = Properties.Vehicle.Default.setVehicle_GradeDistFromLine;
+                        vehicle.maxCuttingDepth = Properties.Vehicle.Default.setVehicle_MaxCuttingDepth;
+
+                        //Valve settings
+
+                        vehicle.pwmGainUp = Properties.Vehicle.Default.setVehicle_pwmGainUp;
+                        vehicle.pwmGainDown = Properties.Vehicle.Default.setVehicle_pwmGainDown;
+                        vehicle.pwmMinUp = Properties.Vehicle.Default.setVehicle_pwmMinUp;
+                        vehicle.pwmMinDown = Properties.Vehicle.Default.setVehicle_pwmMinDown;
+                        vehicle.pwmMaxUp = Properties.Vehicle.Default.setVehicle_pwmMaxUp;
+                        vehicle.pwmMaxDown = Properties.Vehicle.Default.setVehicle_pwmMaxDown;
+                        vehicle.integralMultiplier = Properties.Vehicle.Default.setVehicle_integralMultiplier;
+                        vehicle.deadband = Properties.Vehicle.Default.setVehicle_deadband;
 
                         vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
                         vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;

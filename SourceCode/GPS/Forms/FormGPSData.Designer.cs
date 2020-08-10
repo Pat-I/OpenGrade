@@ -427,9 +427,9 @@
             this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label16.Location = new System.Drawing.Point(126, 337);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(122, 23);
+            this.label16.Size = new System.Drawing.Size(172, 23);
             this.label16.TabIndex = 121;
-            this.label16.Text = "Section Relay";
+            this.label16.Text = "Blade Control Relay";
             // 
             // label17
             // 

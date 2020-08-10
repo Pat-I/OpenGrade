@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    "\\Application"
+    "",
+    "\\Application",
+    "\\SourceCode"
   ],
+  "SelectedNode": "\\SourceCode\\OpenGrade.sln",
   "PreviewInSolutionExplorer": false
 }

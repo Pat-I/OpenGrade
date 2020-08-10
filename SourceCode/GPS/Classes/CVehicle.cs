@@ -17,6 +17,7 @@ namespace OpenGrade
 
         public double minSlope;
         public double antennaHeight;
+        public double maxCuttingDepth;
 
         //width of cutting tool
         public double toolWidth;
@@ -25,6 +26,21 @@ namespace OpenGrade
         public double goalPointLookAhead;
         public double maxSteerAngle;
         public double maxAngularVelocity;
+
+        //Valve Settings
+        public byte pwmGainUp;
+        public byte pwmGainDown;
+        public byte pwmMinUp;
+        public byte pwmMinDown;
+        public byte pwmMaxUp;
+        public byte pwmMaxDown;
+        public byte integralMultiplier;
+        public byte deadband;
+
+        //Display Settings for this vehicle
+        public double viewDistUnderGnd;
+        public double viewDistAboveGnd;
+        public double gradeDistFromLine;
 
         public CVehicle(OpenGL _gl, FormGPS _f)
         {
@@ -42,6 +58,11 @@ namespace OpenGrade
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
             minSlope = Properties.Vehicle.Default.setVehicle_minSlope;
+
+            maxCuttingDepth = Properties.Vehicle.Default.setVehicle_MaxCuttingDepth;
+            viewDistUnderGnd = Properties.Vehicle.Default.setVehicle_ViewDistUnderGnd;
+            viewDistAboveGnd = Properties.Vehicle.Default.setVehicle_ViewDistAboveGnd;
+            gradeDistFromLine = Properties.Vehicle.Default.setVehicle_GradeDistFromLine;
         }
 
         public void DrawVehicle()

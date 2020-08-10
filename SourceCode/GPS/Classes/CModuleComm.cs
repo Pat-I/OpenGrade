@@ -13,16 +13,15 @@ namespace OpenGrade
         public int incomingInt;
 
         // PGN - 32762 - 127.250
-        public static int numRelayRateDataItems = 7;
+        public static int numRelayRateDataItems = 3;
         public byte[] relayRateData = new byte[numRelayRateDataItems];
-        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByte = 2, rdSpeedXFour = 3,
-                    rdRateSetPointHi = 4, rdRateSetPointLo = 5, rdYouTurnControlByte = 6;
+        public int rdHeaderHi, rdHeaderLo = 1, cutValve = 2; // rdYouTurnControlByte = 6
 
         // PGN - 32760 - 127.248
-        public static int numRelayRateSettingsItems = 6;
+        public static int numRelayRateSettingsItems = 10;
         public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
-        public int rsHeaderHi, rsHeaderLo = 1, rsAccumulatedVolumeHi = 2, rsAccumulatedVolumeLo = 3,
-            rsFlowCalFactorHi = 4, rsFlowCalFactorLo = 5;
+        public int rsHeaderHi, rsHeaderLo = 1, rsPwmGainUp = 2, rsPwmGainDown = 3,
+            rsPwmMinUp = 4, rsPwmMinDown = 5, rsPwmMaxUp = 6, rsPwmMaxDown = 7, rsIntegralMultiplier = 8, rsDeadband = 9;
 
         //AutoSteer ------------------------------------------------------------------------------------------------
         public string serialRecvAutoSteerStr;
@@ -30,8 +29,8 @@ namespace OpenGrade
         // PGN - 32766 - 127.254
         public static int numSteerDataItems = 8;
         public byte[] autoSteerData = new byte[numSteerDataItems];
-        public int sdHeaderHi, sdHeaderLo=1, sdRelay=2, sdSpeed=3, sdDistanceHi=4, sdDistanceLo=5,
-                    sdSteerAngleHi=6, sdSteerAngleLo=7;
+        public int sdHeaderHi, sdHeaderLo = 1, sdRelay = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
+                    sdSteerAngleHi = 6, sdSteerAngleLo = 7;
 
         // PGN - 32764 - 127.252
         public static int numSteerSettingItems = 10;
@@ -65,13 +64,21 @@ namespace OpenGrade
         public void ResetAllModuleCommValues()
         {
             relayRateData[rdHeaderHi] = 127; // PGN - 32762
-            relayRateData[rdHeaderLo] = 250;
-            relayRateData[rdSectionControlByte] = 0;
-            relayRateData[rdRateSetPointHi] = 0;
-            relayRateData[rdRateSetPointLo] = 0;
-            relayRateData[rdSpeedXFour] = 0;
-            relayRateData[rdYouTurnControlByte] = 0;
-            mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
+            relayRateData[rdHeaderLo] = 250; 
+            relayRateData[cutValve] = 101;
+            mf.RateRelayDataOutToPort(); // etait mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
+
+            relayRateSettings[rsHeaderHi] = 127; // PGN - 32760 Added by Pat
+            relayRateSettings[rsHeaderLo] = 248;
+            relayRateSettings[rsPwmGainUp] = Properties.Vehicle.Default.setVehicle_pwmGainUp;
+            relayRateSettings[rsPwmGainDown] = Properties.Vehicle.Default.setVehicle_pwmGainDown;
+            relayRateSettings[rsPwmMinUp] = Properties.Vehicle.Default.setVehicle_pwmMinUp;
+            relayRateSettings[rsPwmMinDown] = Properties.Vehicle.Default.setVehicle_pwmMinDown;
+            relayRateSettings[rsPwmMaxUp] = Properties.Vehicle.Default.setVehicle_pwmMaxUp;
+            relayRateSettings[rsPwmMaxDown] = Properties.Vehicle.Default.setVehicle_pwmMaxDown;
+            relayRateSettings[rsIntegralMultiplier] = Properties.Vehicle.Default.setVehicle_integralMultiplier;
+            relayRateSettings[rsDeadband] = Properties.Vehicle.Default.setVehicle_deadband;
+            mf.RateRelaySettingsOutToPort();
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = (254);

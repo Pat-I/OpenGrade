@@ -12,7 +12,7 @@ namespace OpenGrade.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
     internal sealed partial class Vehicle : global::System.Configuration.ApplicationSettingsBase {
         
         private static Vehicle defaultInstance = ((Vehicle)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Vehicle())));
@@ -116,6 +116,150 @@ namespace OpenGrade.Properties {
             }
             set {
                 this["setVehicle_minSlope"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public byte setVehicle_pwmGainUp {
+            get {
+                return ((byte)(this["setVehicle_pwmGainUp"]));
+            }
+            set {
+                this["setVehicle_pwmGainUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public byte setVehicle_pwmGainDown {
+            get {
+                return ((byte)(this["setVehicle_pwmGainDown"]));
+            }
+            set {
+                this["setVehicle_pwmGainDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public byte setVehicle_pwmMinUp {
+            get {
+                return ((byte)(this["setVehicle_pwmMinUp"]));
+            }
+            set {
+                this["setVehicle_pwmMinUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public byte setVehicle_pwmMinDown {
+            get {
+                return ((byte)(this["setVehicle_pwmMinDown"]));
+            }
+            set {
+                this["setVehicle_pwmMinDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        public byte setVehicle_pwmMaxUp {
+            get {
+                return ((byte)(this["setVehicle_pwmMaxUp"]));
+            }
+            set {
+                this["setVehicle_pwmMaxUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        public byte setVehicle_pwmMaxDown {
+            get {
+                return ((byte)(this["setVehicle_pwmMaxDown"]));
+            }
+            set {
+                this["setVehicle_pwmMaxDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public byte setVehicle_integralMultiplier {
+            get {
+                return ((byte)(this["setVehicle_integralMultiplier"]));
+            }
+            set {
+                this["setVehicle_integralMultiplier"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public byte setVehicle_deadband {
+            get {
+                return ((byte)(this["setVehicle_deadband"]));
+            }
+            set {
+                this["setVehicle_deadband"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_ViewDistUnderGnd {
+            get {
+                return ((double)(this["setVehicle_ViewDistUnderGnd"]));
+            }
+            set {
+                this["setVehicle_ViewDistUnderGnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_ViewDistAboveGnd {
+            get {
+                return ((double)(this["setVehicle_ViewDistAboveGnd"]));
+            }
+            set {
+                this["setVehicle_ViewDistAboveGnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double setVehicle_GradeDistFromLine {
+            get {
+                return ((double)(this["setVehicle_GradeDistFromLine"]));
+            }
+            set {
+                this["setVehicle_GradeDistFromLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_MaxCuttingDepth {
+            get {
+                return ((double)(this["setVehicle_MaxCuttingDepth"]));
+            }
+            set {
+                this["setVehicle_MaxCuttingDepth"] = value;
             }
         }
     }

@@ -180,15 +180,32 @@ namespace OpenGrade
         #region RelaySerialPort //--------------------------------------------------------------------
 
         //Send relay info out to relay board
-        public void RateRelayOutToPort(byte[] items, int numItems)
+        public void RateRelayDataOutToPort()
+        //public void RateRelayOutToPort(byte[] items, int numItems)
         {
             //Tell Arduino to turn section on or off accordingly
             if (spRelay.IsOpen)
             {
-                try { spRelay.Write(items, 0, numItems ); }
+                try { spRelay.Write(mc.relayRateData, 0, CModuleComm.numRelayRateDataItems); } //try { spRelay.Write(items, 0, numItems ); }   Pat
                 catch (Exception e)
                 {
                     WriteErrorLog("Out to Section relays" + e.ToString());
+                    SerialPortRateRelayClose();
+                }
+            }
+        }
+
+        // RateRelaySettingsOutToPort added By Pat
+        public void RateRelaySettingsOutToPort()
+        //public void RateRelayOutToPort(byte[] items, int numItems)
+        {
+            //Tell Arduino to turn section on or off accordingly
+            if (spRelay.IsOpen)
+            {
+                try { spRelay.Write(mc.relayRateSettings, 0, CModuleComm.numRelayRateSettingsItems); } //try { spRelay.Write(items, 0, numItems ); }   Pat
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Settings to Section relays" + e.ToString());
                     SerialPortRateRelayClose();
                 }
             }
@@ -233,7 +250,7 @@ namespace OpenGrade
                     System.Threading.Thread.Sleep(25);
                     string sentence = spRelay.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRateRelay), sentence);                    
-                    if (spRelay.BytesToRead > 8) spRelay.DiscardInBuffer();
+                    if (spRelay.BytesToRead > 9) spRelay.DiscardInBuffer(); // Pat le 9 remplace 8
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
                 catch (Exception ex)
