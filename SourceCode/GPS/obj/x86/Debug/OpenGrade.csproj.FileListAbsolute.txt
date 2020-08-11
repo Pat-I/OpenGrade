@@ -151,7 +151,6 @@ C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\Application\Dependencies\Landscape
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\Application\OpenGrade.exe.config
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\Application\OpenGrade.exe
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\Application\OpenGrade.pdb
-C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.csprojAssemblyReference.cache
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.FormFieldDir.resources
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.FormABLine.resources
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.FormCommSet.resources
@@ -172,3 +171,4 @@ C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenG
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.csproj.CopyComplete
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.exe
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.pdb
+C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.csprojAssemblyReference.cache
