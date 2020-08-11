@@ -413,12 +413,6 @@ namespace OpenGrade
             gl.LineWidth(4);
 
 
-            if (cboxLaserModeOnOff.Checked)
-            {
-
-                cutDelta = (pn.altitude - ct.zeroAltitude) * 100;
-
-            }
 
 
             if (ptCnt > 0)
@@ -578,10 +572,14 @@ namespace OpenGrade
                     {
 
                         cutDelta = (pn.altitude - ct.zeroAltitude) * 100;
-
+                        cboxLaserModeOnOff.Text = "LASER MODE ON";
+                        cboxLaserModeOnOff.BackColor = System.Drawing.Color.LawnGreen;
                     }
                     else
                     {
+                        cboxLaserModeOnOff.Text = "LASER MODE OFF";
+                        cboxLaserModeOnOff.BackColor = System.Drawing.Color.Transparent;
+
                         if (ct.ptList[closestPoint].cutAltitude > 0)
                         {
                             //in cm
@@ -590,7 +588,24 @@ namespace OpenGrade
                     }
                 }
             }
+            else
+            {
 
+                if (cboxLaserModeOnOff.Checked)
+                {
+
+                    cutDelta = (pn.altitude - ct.zeroAltitude) * 100;
+                    cboxLaserModeOnOff.Text = "LASER MODE ON";
+                    cboxLaserModeOnOff.BackColor = System.Drawing.Color.LawnGreen;
+
+                }
+                else
+                {
+                    cboxLaserModeOnOff.Text = "LASER MODE OFF";
+                    cboxLaserModeOnOff.BackColor = System.Drawing.Color.Transparent;
+                }
+
+            }
 
 
         }

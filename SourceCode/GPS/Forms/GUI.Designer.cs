@@ -344,6 +344,7 @@ namespace OpenGrade
                 for (int i = 0; i < cnnt; i++) ct.ptList[i].lastPassAltitude = -1;
             }
         }
+
         private void btnZeroAltitude_Click(object sender, EventArgs e)
         {
             ct.zeroAltitude = pn.altitude;
@@ -352,6 +353,14 @@ namespace OpenGrade
         private void btnZeroAltitudeRef_Click(object sender, EventArgs e)
         {
             ct.zeroAltitudeRef = pn.altitude;
+        }
+
+        private void btnSwitchAlt_Click(object sender, EventArgs e)
+        {
+            double tempZeroAltitude;
+            tempZeroAltitude = ct.zeroAltitude;
+            ct.zeroAltitude = ct.zeroAltitudeRef;
+            ct.zeroAltitudeRef = tempZeroAltitude;
         }
 
         private void btnStartDraw_Click(object sender, EventArgs e)

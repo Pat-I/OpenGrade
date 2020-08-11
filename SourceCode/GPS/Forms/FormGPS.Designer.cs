@@ -140,6 +140,8 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnSnap = new System.Windows.Forms.Button();
             this.controlPage2 = new System.Windows.Forms.TabPage();
+            this.btnSwitchAlt = new System.Windows.Forms.Button();
+            this.btnZeroAltitudeRef = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lblCutDelta = new System.Windows.Forms.Label();
             this.btnZeroAltitude = new System.Windows.Forms.Button();
@@ -182,7 +184,7 @@
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.lblFixUpdateHz = new System.Windows.Forms.Label();
-            this.btnZeroAltitudeRef = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -1041,7 +1043,7 @@
             this.DataPage.ImageIndex = 1;
             this.DataPage.Location = new System.Drawing.Point(4, 4);
             this.DataPage.Name = "DataPage";
-            this.DataPage.Size = new System.Drawing.Size(576, 255);
+            this.DataPage.Size = new System.Drawing.Size(667, 255);
             this.DataPage.TabIndex = 3;
             // 
             // btnStartDraw
@@ -1250,7 +1252,7 @@
             this.configPage1.Location = new System.Drawing.Point(4, 4);
             this.configPage1.Name = "configPage1";
             this.configPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.configPage1.Size = new System.Drawing.Size(576, 255);
+            this.configPage1.Size = new System.Drawing.Size(667, 255);
             this.configPage1.TabIndex = 0;
             // 
             // btnABLine
@@ -1348,6 +1350,8 @@
             // controlPage2
             // 
             this.controlPage2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.controlPage2.Controls.Add(this.label13);
+            this.controlPage2.Controls.Add(this.btnSwitchAlt);
             this.controlPage2.Controls.Add(this.btnZeroAltitudeRef);
             this.controlPage2.Controls.Add(this.label6);
             this.controlPage2.Controls.Add(this.lblCutDelta);
@@ -1362,17 +1366,44 @@
             this.controlPage2.Size = new System.Drawing.Size(667, 255);
             this.controlPage2.TabIndex = 4;
             // 
+            // btnSwitchAlt
+            // 
+            this.btnSwitchAlt.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.btnSwitchAlt.Location = new System.Drawing.Point(194, 120);
+            this.btnSwitchAlt.Name = "btnSwitchAlt";
+            this.btnSwitchAlt.Size = new System.Drawing.Size(113, 31);
+            this.btnSwitchAlt.TabIndex = 244;
+            this.btnSwitchAlt.Text = "< SWITCH >";
+            this.btnSwitchAlt.UseVisualStyleBackColor = true;
+            this.btnSwitchAlt.Click += new System.EventHandler(this.btnSwitchAlt_Click);
+            // 
+            // btnZeroAltitudeRef
+            // 
+            this.btnZeroAltitudeRef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZeroAltitudeRef.BackColor = System.Drawing.Color.Lavender;
+            this.btnZeroAltitudeRef.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnZeroAltitudeRef.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroAltitudeRef.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnZeroAltitudeRef.Location = new System.Drawing.Point(3, 160);
+            this.btnZeroAltitudeRef.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnZeroAltitudeRef.Name = "btnZeroAltitudeRef";
+            this.btnZeroAltitudeRef.Size = new System.Drawing.Size(243, 81);
+            this.btnZeroAltitudeRef.TabIndex = 243;
+            this.btnZeroAltitudeRef.Text = "0.55";
+            this.btnZeroAltitudeRef.UseVisualStyleBackColor = false;
+            this.btnZeroAltitudeRef.Click += new System.EventHandler(this.btnZeroAltitudeRef_Click);
+            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(319, 116);
+            this.label6.Location = new System.Drawing.Point(313, 136);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 19);
+            this.label6.Size = new System.Drawing.Size(181, 19);
             this.label6.TabIndex = 227;
-            this.label6.Text = "Push to Zero";
+            this.label6.Text = "For Laser (Push to Zero)";
             // 
             // lblCutDelta
             // 
@@ -1437,11 +1468,11 @@
             this.cboxLaserModeOnOff.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxLaserModeOnOff.BackColor = System.Drawing.Color.Transparent;
             this.cboxLaserModeOnOff.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxLaserModeOnOff.Image = global::OpenGrade.Properties.Resources.LaserMode;
             this.cboxLaserModeOnOff.Location = new System.Drawing.Point(39, 6);
             this.cboxLaserModeOnOff.Name = "cboxLaserModeOnOff";
-            this.cboxLaserModeOnOff.Size = new System.Drawing.Size(126, 90);
+            this.cboxLaserModeOnOff.Size = new System.Drawing.Size(207, 90);
             this.cboxLaserModeOnOff.TabIndex = 242;
+            this.cboxLaserModeOnOff.Text = "LASER MODE OFF";
             this.cboxLaserModeOnOff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxLaserModeOnOff.UseVisualStyleBackColor = false;
             // 
@@ -1990,21 +2021,17 @@
             this.lblFixUpdateHz.TabIndex = 227;
             this.lblFixUpdateHz.Text = "label13";
             // 
-            // btnZeroAltitudeRef
+            // label13
             // 
-            this.btnZeroAltitudeRef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnZeroAltitudeRef.BackColor = System.Drawing.Color.Lavender;
-            this.btnZeroAltitudeRef.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnZeroAltitudeRef.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZeroAltitudeRef.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnZeroAltitudeRef.Location = new System.Drawing.Point(3, 160);
-            this.btnZeroAltitudeRef.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.btnZeroAltitudeRef.Name = "btnZeroAltitudeRef";
-            this.btnZeroAltitudeRef.Size = new System.Drawing.Size(243, 81);
-            this.btnZeroAltitudeRef.TabIndex = 243;
-            this.btnZeroAltitudeRef.Text = "0.55";
-            this.btnZeroAltitudeRef.UseVisualStyleBackColor = false;
-            this.btnZeroAltitudeRef.Click += new System.EventHandler(this.btnZeroAltitudeRef_Click);
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(7, 136);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(177, 19);
+            this.label13.TabIndex = 245;
+            this.label13.Text = "Ref Only (Push to Zero)";
             // 
             // FormGPS
             // 
@@ -2230,6 +2257,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblFixUpdateHz;
         private System.Windows.Forms.Button btnZeroAltitudeRef;
+        private System.Windows.Forms.Button btnSwitchAlt;
+        private System.Windows.Forms.Label label13;
     }
 }
 
