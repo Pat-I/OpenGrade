@@ -146,6 +146,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -170,6 +178,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -555,15 +571,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Opengrade"
-        "ProductCode" = "8:{B57BFAC6-5F24-4075-9C8F-32F26AD3B552}"
-        "PackageCode" = "8:{D269B69B-C514-4AC9-8699-4DD3C99B2C08}"
+        "ProductCode" = "8:{9A4E6505-30BA-4C0E-8F00-B79F34A34E0E}"
+        "PackageCode" = "8:{B642973D-6ED4-4A78-B2E9-0650BEE87B88}"
         "UpgradeCode" = "8:{99F7FFC4-73AA-4407-A98C-AA013DC40A01}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:Opengrade"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
