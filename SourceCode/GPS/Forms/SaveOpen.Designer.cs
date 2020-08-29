@@ -42,7 +42,7 @@ namespace OpenGrade
 
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
-                    writer.WriteLine("Version," + " OpenGrade v1.1");
+                    writer.WriteLine("Version," + " OpenGrade v2.1");
                     writer.WriteLine("Wheelbase," + Properties.Vehicle.Default.setVehicle_wheelbase.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("AntennaHeight," + Properties.Vehicle.Default.setVehicle_antennaHeight.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ToolWidth," + Properties.Vehicle.Default.setVehicle_toolWidth.ToString(CultureInfo.InvariantCulture));
@@ -152,16 +152,16 @@ namespace OpenGrade
                         if (words[0] != "Version")
 
                         {
-                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 1.1 or higher");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.1 or higher");
                             form.Show();
                             return;
                         }
 
                         
 
-                        if (words[1] != " OpenGrade v1.1")
+                        if (words[1] != " OpenGrade v2.1")
                         {
-                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be OpenGrade v1.1");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be OpenGrade v2.1");
                             form.Show();
                             return;
                         }
