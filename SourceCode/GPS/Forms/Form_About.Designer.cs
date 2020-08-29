@@ -63,9 +63,9 @@
             this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label6.Location = new System.Drawing.Point(14, 142);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 18);
+            this.label6.Size = new System.Drawing.Size(156, 18);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Check for Updates\r\n";
+            this.label6.Text = "Original software from:";
             // 
             // label5
             // 
@@ -73,9 +73,9 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label5.Location = new System.Drawing.Point(14, 102);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 18);
+            this.label5.Size = new System.Drawing.Size(23, 18);
             this.label5.TabIndex = 17;
-            this.label5.Text = "yesgogit@gmail.com";
+            this.label5.Text = "...";
             // 
             // label4
             // 
@@ -103,9 +103,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label2.Location = new System.Drawing.Point(167, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 18);
+            this.label2.Size = new System.Drawing.Size(108, 18);
             this.label2.TabIndex = 14;
-            this.label2.Text = "v1.3 Jan 2018";
+            this.label2.Text = "v1.1 Sept 2020";
             // 
             // label1
             // 
@@ -133,10 +133,10 @@
             this.linkLabelCombineForum.AutoSize = true;
             this.linkLabelCombineForum.Location = new System.Drawing.Point(14, 372);
             this.linkLabelCombineForum.Name = "linkLabelCombineForum";
-            this.linkLabelCombineForum.Size = new System.Drawing.Size(397, 13);
+            this.linkLabelCombineForum.Size = new System.Drawing.Size(169, 13);
             this.linkLabelCombineForum.TabIndex = 12;
             this.linkLabelCombineForum.TabStop = true;
-            this.linkLabelCombineForum.Text = "http://www.thecombineforum.com/forums/31-technology/316233-open-grade.html";
+            this.linkLabelCombineForum.Text = "http://agopengps.discourse.group";
             this.linkLabelCombineForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCombineForum_LinkClicked);
             // 
             // button1

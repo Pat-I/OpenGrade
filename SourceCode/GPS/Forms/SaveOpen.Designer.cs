@@ -42,7 +42,7 @@ namespace OpenGrade
 
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
-                    writer.WriteLine("Version," + Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Version," + " OpenGrade v1.1");
                     writer.WriteLine("Wheelbase," + Properties.Vehicle.Default.setVehicle_wheelbase.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("AntennaHeight," + Properties.Vehicle.Default.setVehicle_antennaHeight.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ToolWidth," + Properties.Vehicle.Default.setVehicle_toolWidth.ToString(CultureInfo.InvariantCulture));
@@ -149,22 +149,22 @@ namespace OpenGrade
                         string[] words;
                         line = reader.ReadLine(); words = line.Split(',');
 
-                        //if (words[0] != "Version")
+                        if (words[0] != "Version")
 
-                        //{
-                        //    var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.16 or higher");
-                        //    form.Show();
-                        //    return;
-                        //}
+                        {
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 1.1 or higher");
+                            form.Show();
+                            return;
+                        }
 
-                        //double test = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        
 
-                        //if (test < 2.16)
-                        //{
-                        //    var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.16 or higher");
-                        //    form.Show();
-                        //    return;
-                        //}
+                        if (words[1] != " OpenGrade v1.1")
+                        {
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be OpenGrade v1.1");
+                            form.Show();
+                            return;
+                        }
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_wheelbase = double.Parse(words[1], CultureInfo.InvariantCulture);
