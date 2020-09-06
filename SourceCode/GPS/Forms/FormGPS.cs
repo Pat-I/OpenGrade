@@ -730,6 +730,8 @@ namespace OpenGrade
             LoadGUI();
         }
 
+       
+
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {

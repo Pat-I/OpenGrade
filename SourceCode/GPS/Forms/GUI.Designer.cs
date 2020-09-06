@@ -363,6 +363,23 @@ namespace OpenGrade
             ct.zeroAltitudeRef = tempZeroAltitude;
         }
 
+        private void btnSendCutLine_Click(object sender, EventArgs e)
+        {
+            int ptcount = ct.ptList.Count;
+
+            if (ptcount > 1)
+            {
+                for (int h = 0; h < ptcount; h++)
+                {
+                    if (ct.ptList[h].cutAltitude != -1)
+                    {
+                        ct.ptList[h].cutAltitude += (double)(nudMoveCutLine.Value / 100);
+                    }
+                }
+            }
+        }
+
+
         private void btnStartDraw_Click(object sender, EventArgs e)
         {
             if (ct.ptList.Count > 5)
@@ -378,6 +395,7 @@ namespace OpenGrade
                 btnDoneDraw.Enabled = true;
                 btnDeleteLastPoint.Enabled = true;
                 btnStartDraw.Enabled = false;
+                btnSendCutLine.Enabled = false;
             }
             else TimedMessageBox(1500, "No Surveyed Points", "Survey a Contour First");
         }
@@ -386,6 +404,7 @@ namespace OpenGrade
             btnDoneDraw.Enabled = false;
             btnDeleteLastPoint.Enabled = false;
             btnStartDraw.Enabled = true;
+            btnSendCutLine.Enabled = true;
 
             ct.isDrawingRefLine = false;
             int cnt = ct.ptList.Count;

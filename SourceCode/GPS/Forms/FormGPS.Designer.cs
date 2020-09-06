@@ -114,6 +114,9 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnSendCutLine = new System.Windows.Forms.Button();
+            this.nudMoveCutLine = new System.Windows.Forms.NumericUpDown();
             this.btnStartDraw = new System.Windows.Forms.Button();
             this.lblSats = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
@@ -140,6 +143,7 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnSnap = new System.Windows.Forms.Button();
             this.controlPage2 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnSwitchAlt = new System.Windows.Forms.Button();
             this.btnZeroAltitudeRef = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -184,7 +188,6 @@
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.lblFixUpdateHz = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -193,6 +196,7 @@
             this.contextMenuStripFlag.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.DataPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMoveCutLine)).BeginInit();
             this.configPage1.SuspendLayout();
             this.controlPage2.SuspendLayout();
             this.panelSimControls.SuspendLayout();
@@ -1017,6 +1021,9 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.label14);
+            this.DataPage.Controls.Add(this.btnSendCutLine);
+            this.DataPage.Controls.Add(this.nudMoveCutLine);
             this.DataPage.Controls.Add(this.btnStartDraw);
             this.DataPage.Controls.Add(this.lblSats);
             this.DataPage.Controls.Add(this.lblFixQuality);
@@ -1046,13 +1053,51 @@
             this.DataPage.Size = new System.Drawing.Size(667, 255);
             this.DataPage.TabIndex = 3;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label14.Location = new System.Drawing.Point(407, 156);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(174, 19);
+            this.label14.TabIndex = 188;
+            this.label14.Text = "Move cut line Up/Down";
+            // 
+            // btnSendCutLine
+            // 
+            this.btnSendCutLine.Location = new System.Drawing.Point(561, 188);
+            this.btnSendCutLine.Name = "btnSendCutLine";
+            this.btnSendCutLine.Size = new System.Drawing.Size(88, 40);
+            this.btnSendCutLine.TabIndex = 187;
+            this.btnSendCutLine.Text = "Send";
+            this.btnSendCutLine.UseVisualStyleBackColor = true;
+            this.btnSendCutLine.Click += new System.EventHandler(this.btnSendCutLine_Click);
+            // 
+            // nudMoveCutLine
+            // 
+            this.nudMoveCutLine.DecimalPlaces = 1;
+            this.nudMoveCutLine.Location = new System.Drawing.Point(407, 188);
+            this.nudMoveCutLine.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudMoveCutLine.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.nudMoveCutLine.Name = "nudMoveCutLine";
+            this.nudMoveCutLine.Size = new System.Drawing.Size(120, 40);
+            this.nudMoveCutLine.TabIndex = 186;
+            // 
             // btnStartDraw
             // 
             this.btnStartDraw.BackColor = System.Drawing.Color.Lavender;
             this.btnStartDraw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnStartDraw.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartDraw.Image = global::OpenGrade.Properties.Resources.PointStart;
-            this.btnStartDraw.Location = new System.Drawing.Point(115, 156);
+            this.btnStartDraw.Location = new System.Drawing.Point(33, 156);
             this.btnStartDraw.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnStartDraw.Name = "btnStartDraw";
             this.btnStartDraw.Size = new System.Drawing.Size(84, 84);
@@ -1097,7 +1142,7 @@
             this.btnDeleteLastPoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDeleteLastPoint.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteLastPoint.Image = global::OpenGrade.Properties.Resources.PointDelete;
-            this.btnDeleteLastPoint.Location = new System.Drawing.Point(260, 156);
+            this.btnDeleteLastPoint.Location = new System.Drawing.Point(161, 156);
             this.btnDeleteLastPoint.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDeleteLastPoint.Name = "btnDeleteLastPoint";
             this.btnDeleteLastPoint.Size = new System.Drawing.Size(84, 84);
@@ -1111,7 +1156,7 @@
             this.btnDoneDraw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDoneDraw.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDoneDraw.Image = global::OpenGrade.Properties.Resources.PointDone;
-            this.btnDoneDraw.Location = new System.Drawing.Point(405, 156);
+            this.btnDoneDraw.Location = new System.Drawing.Point(294, 156);
             this.btnDoneDraw.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDoneDraw.Name = "btnDoneDraw";
             this.btnDoneDraw.Size = new System.Drawing.Size(84, 84);
@@ -1365,6 +1410,18 @@
             this.controlPage2.Name = "controlPage2";
             this.controlPage2.Size = new System.Drawing.Size(667, 255);
             this.controlPage2.TabIndex = 4;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(7, 136);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(177, 19);
+            this.label13.TabIndex = 245;
+            this.label13.Text = "Ref Only (Push to Zero)";
             // 
             // btnSwitchAlt
             // 
@@ -2021,18 +2078,6 @@
             this.lblFixUpdateHz.TabIndex = 227;
             this.lblFixUpdateHz.Text = "label13";
             // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(7, 136);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(177, 19);
-            this.label13.TabIndex = 245;
-            this.label13.Text = "Ref Only (Push to Zero)";
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2093,6 +2138,7 @@
             this.tabControl1.ResumeLayout(false);
             this.DataPage.ResumeLayout(false);
             this.DataPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMoveCutLine)).EndInit();
             this.configPage1.ResumeLayout(false);
             this.controlPage2.ResumeLayout(false);
             this.controlPage2.PerformLayout();
@@ -2259,6 +2305,9 @@
         private System.Windows.Forms.Button btnZeroAltitudeRef;
         private System.Windows.Forms.Button btnSwitchAlt;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnSendCutLine;
+        private System.Windows.Forms.NumericUpDown nudMoveCutLine;
     }
 }
 
