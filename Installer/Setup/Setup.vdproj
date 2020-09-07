@@ -129,7 +129,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\OpenGradeSetup.msi"
+        "OutputFilename" = "8:..\\Debug\\OpenGradeSetup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -161,7 +161,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\OpenGradeSetup.msi"
+        "OutputFilename" = "8:..\\OpenGradeSetup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -283,7 +283,7 @@
             "SourcePath" = "8:..\\..\\ArduinoCode\\ValveControlUnified\\ValveControl\\ValveControl.ino"
             "TargetName" = "8:ValveControl.ino"
             "Tag" = "8:"
-            "Folder" = "8:_4BD1950D10954A519462D653CDD4DD3D"
+            "Folder" = "8:_C6DCD23EBBFF4C8BA75AE6CFD9E8A599"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -303,7 +303,7 @@
             "SourcePath" = "8:..\\..\\ArduinoCode\\ValveControlShematic.png"
             "TargetName" = "8:ValveControlShematic.png"
             "Tag" = "8:"
-            "Folder" = "8:_F1BE51F0E3344D6B85C9F638652B691E"
+            "Folder" = "8:_C2560900293D462D8A6AE8D97665AB94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -498,28 +498,6 @@
                         {
                         }
                     }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F1BE51F0E3344D6B85C9F638652B691E"
-                    {
-                    "Name" = "8:Arduino"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_8F4BADD284D34FFD853013236422DF78"
-                        "Folders"
-                        {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_4BD1950D10954A519462D653CDD4DD3D"
-                            {
-                            "Name" = "8:ValveControl"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_8AEF26F7C4E64A8BACA26DA18CCBE378"
-                                "Folders"
-                                {
-                                }
-                            }
-                        }
-                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D96DBDE565D84180830D6BCB180E66E1"
@@ -553,6 +531,28 @@
             "Property" = "8:DesktopFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C2560900293D462D8A6AE8D97665AB94"
+                    {
+                    "Name" = "8:OpenGrade arduino"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_B405EFDAFECD4619A3BAD786226E1C97"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_C6DCD23EBBFF4C8BA75AE6CFD9E8A599"
+                            {
+                            "Name" = "8:ValveControl"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_8AEF26F7C4E64A8BACA26DA18CCBE378"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -571,15 +571,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Opengrade"
-        "ProductCode" = "8:{E247518E-BE24-4E1F-AA6E-C67264AED30D}"
-        "PackageCode" = "8:{2220E9D2-9255-4EAA-9E5A-603963EC1009}"
+        "ProductCode" = "8:{AF2B9554-5350-4F84-8457-370D60C01622}"
+        "PackageCode" = "8:{F1B699F8-54E7-4F2B-BEA5-8135F11E193B}"
         "UpgradeCode" = "8:{99F7FFC4-73AA-4407-A98C-AA013DC40A01}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.1.0"
+        "ProductVersion" = "8:2.1.1"
         "Manufacturer" = "8:Opengrade"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

@@ -1047,7 +1047,7 @@ namespace OpenGrade
 
         #endregion properties 
 
-        //Timer triggers at 20 msec, 50 hz, and is THE clock of the whole program//
+        //Timer triggers at 50 msec, 20 hz, and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //go see if data ready for draw and position updates
@@ -1061,8 +1061,8 @@ namespace OpenGrade
             //GPS Update rate
             lblFixUpdateHz.Text = NMEAHz + " Hz " + FixQuality;
 
-            //every half of a second update all status
-            if (statusUpdateCounter > 4)
+            // update all status every 100 ms 10hz, was 4hz
+            if (statusUpdateCounter > 1)
             {
                 //reset the counter
                 statusUpdateCounter = 0;

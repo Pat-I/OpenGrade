@@ -171,4 +171,3 @@ C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenG
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.csproj.CopyComplete
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.exe
 C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.pdb
-C:\Users\Imhof\Documents\GitHub\Pat\OpenGrade\SourceCode\GPS\obj\x86\Debug\OpenGrade.csprojAssemblyReference.cache

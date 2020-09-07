@@ -312,7 +312,7 @@ namespace OpenGrade
                 frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
                 //if a couple minute has elapsed save the field in case of crash and to be able to resume            
-                if (saveCounter > 60)       //2 counts per second X 60 seconds = 120 counts per minute.
+                if (saveCounter > 600)       //10 counts per second X 60 seconds = 600 counts per minute.
                 {
                     if (isJobStarted && stripOnlineGPS.Value != 1)
                     {
