@@ -16,6 +16,9 @@ namespace OpenGrade
         public double cutDelta;
         private double minDist;
 
+        //Values for slope horizonal dist
+        private double SlopeDist, HorRealDist;
+
         //the point in the real world made from clicked screen coords
         vec2 screen2FieldPt = new vec2();
 
@@ -621,6 +624,32 @@ namespace OpenGrade
             screen2FieldPt.northing = ((double)screenPt.Y) * (double)cameraDistanceZ / (openGLControlBack.Height * altitudeWindowGain);
             screen2FieldPt.northing += centerY;
 
+            int cnt2 = ct.drawList.Count;                                   
+            int SlopeDistB = (int)screen2FieldPt.easting;
+
+            int ptcnt = ct.ptList.Count;
+            if (ptcnt > 0)
+            {                   
+                if (cnt2 > 0)
+                {
+                    int SlopeDistA = (int)ct.drawList[cnt2 - 1].easting;
+                    //B - A
+                    SlopeDist = 0;
+                    for (int l = SlopeDistA; l < (SlopeDistB + 1); l++)
+                    {
+                        SlopeDist += ct.ptList[l].distance;
+                    }
+                }
+
+                //B - C              
+                HorRealDist = 0;
+
+                for (int k = 0; k < (SlopeDistB + 1); k++)
+                {
+                    HorRealDist += ct.ptList[k].distance;
+                }
+            }
+          
             if (maxFieldX == 0)
             {
                 stripTopoLocation.Text = " 0 " + ": " + " 0.000" + ": " + " 0.0";
@@ -629,8 +658,11 @@ namespace OpenGrade
             {
                 if (ct.ptList.Count > 0)
                 {
-                    if (isMetric) stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + screen2FieldPt.northing.ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) * 100).ToString("N1");
-                    else stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + ((screen2FieldPt.northing) / .0254 / 12).ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) / .0254).ToString("N1");
+                    //if (isMetric) stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + screen2FieldPt.northing.ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) * 100).ToString("N1");
+                    //else stripTopoLocation.Text = ((int)(screen2FieldPt.easting)).ToString() + ": " + ((screen2FieldPt.northing) / .0254 / 12).ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) / .0254).ToString("N1");
+
+                    if (isMetric) stripTopoLocation.Text = HorRealDist.ToString("N2") + ": " + screen2FieldPt.northing.ToString("N3") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) * 100).ToString("N1");
+                    else stripTopoLocation.Text = (HorRealDist / .0254 /12).ToString("N1") + ": " + ((screen2FieldPt.northing) / .0254 / 12).ToString("N2") + ": " + ((screen2FieldPt.northing - ct.ptList[(int)(screen2FieldPt.easting)].altitude) / .0254).ToString("N1");
                 }
                 else stripTopoLocation.Text = " 0 " + ": " + " 0.000" + ": " + " 0.0";
             }
@@ -639,12 +671,14 @@ namespace OpenGrade
             {
                 int cnt = ct.drawList.Count;
                 if (cnt > 0)
-                {
-                    slopeDraw = (((screen2FieldPt.northing - ct.drawList[cnt - 1].northing)
-                   / (screen2FieldPt.easting - ct.drawList[cnt - 1].easting)));
-                    lblDrawSlope.Text = (slopeDraw*100).ToString("N4");
+                {                                                          
+                    if (ptcnt > 0)
+                    {                      
+                        slopeDraw = (((screen2FieldPt.northing - ct.drawList[cnt - 1].northing) / SlopeDist));
+                        lblDrawSlope.Text = (slopeDraw * 100).ToString("N4");
 
-                    CalculateCutFillWhileMouseMove();
+                        CalculateCutFillWhileMouseMove();
+                    }                   
                 }
             }
         }
