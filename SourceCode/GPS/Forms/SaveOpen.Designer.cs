@@ -521,6 +521,15 @@ namespace OpenGrade
                     //calc mins maxes
                     CalculateMinMaxZoom();
                     CalculateTotalCutFillLabels();
+
+                    if (ct.ptList.Count > 1)
+                    {
+                        //Properties.Settings.Default.setSim_lastLat = ct.ptList[0].latitude;
+                        //Properties.Settings.Default.setSim_lastLong = ct.ptList[0].longitude;
+                        nudLatitude.Value = (decimal)ct.ptList[0].latitude;
+                        nudLongitude.Value = (decimal)ct.ptList[0].longitude;
+
+                    }
                 }
             }
 

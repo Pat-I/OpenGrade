@@ -83,9 +83,9 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label4.Location = new System.Drawing.Point(14, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 18);
+            this.label4.Size = new System.Drawing.Size(233, 18);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Brian Tischler";
+            this.label4.Text = "Form OpenGrade by Brian Tischler";
             // 
             // label3
             // 
@@ -103,9 +103,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label2.Location = new System.Drawing.Point(167, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 18);
+            this.label2.Size = new System.Drawing.Size(118, 18);
             this.label2.TabIndex = 14;
-            this.label2.Text = "v2.1.1 Sept 2020";
+            this.label2.Text = "v2.1.2 Nov 2020";
             // 
             // label1
             // 

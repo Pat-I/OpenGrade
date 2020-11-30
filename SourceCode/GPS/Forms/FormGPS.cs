@@ -730,7 +730,13 @@ namespace OpenGrade
             LoadGUI();
         }
 
-       
+        private void btnSimGoTo_click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setSim_lastLat = (double)nudLatitude.Value;
+            Properties.Settings.Default.setSim_lastLong = (double)nudLongitude.Value;
+            Properties.Settings.Default.Save();
+            sim.ResetSim();
+        }
 
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
