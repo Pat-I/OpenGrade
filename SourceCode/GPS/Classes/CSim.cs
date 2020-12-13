@@ -137,8 +137,6 @@ namespace OpenGrade
             latitude = Properties.Settings.Default.setSim_lastLat;
             longitude = Properties.Settings.Default.setSim_lastLong;
 
-            var form = new FormTimedMessage(4000, "Please restart OpenGrade", "To avoid strange beviavour!");
-            form.Show();
         }
 
         private void BuildGGA()

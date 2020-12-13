@@ -732,11 +732,43 @@ namespace OpenGrade
 
         private void btnSimGoTo_click(object sender, EventArgs e)
         {
+            //check dist from old position and show a warning message if too far
+            double oldLat = Properties.Settings.Default.setSim_lastLat;
+            double oldLong = Properties.Settings.Default.setSim_lastLong;
+            double newLat = (double)nudLatitude.Value;
+            double newLong = (double)nudLongitude.Value;
+            double newSimDist;
+
+            newSimDist = 2*(oldLat - newLat)*(oldLat - newLat) + (oldLong - newLong)*(oldLong - newLong);
+
+            if (newSimDist > 2)
+            {
+                var form = new FormTimedMessage(4000, "Please restart OpenGrade", "To avoid strange beviavour!");
+                form.Show();
+            }
+
             Properties.Settings.Default.setSim_lastLat = (double)nudLatitude.Value;
             Properties.Settings.Default.setSim_lastLong = (double)nudLongitude.Value;
             Properties.Settings.Default.Save();
             sim.ResetSim();
+
+           
         }
+
+        private void cboxLastPass_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cboxLastPass.Checked) cboxLastPass.BackColor = System.Drawing.Color.GreenYellow;
+            else cboxLastPass.BackColor = System.Drawing.Color.Transparent;
+        }
+
+        private void cboxRecLastOnOff_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cboxRecLastOnOff.Checked) cboxRecLastOnOff.BackColor = System.Drawing.Color.GreenYellow;
+            else cboxRecLastOnOff.BackColor = System.Drawing.Color.Transparent;
+        }
+
+
+
 
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)

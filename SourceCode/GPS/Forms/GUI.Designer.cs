@@ -384,7 +384,7 @@ namespace OpenGrade
         {
             if (ct.ptList.Count > 5)
             {
-                cboxLastPass.Checked = false;
+                cboxLastPass.Checked = false;              
 
                 ct.drawList.Clear();
                 ct.isDrawingRefLine = true;
@@ -897,6 +897,7 @@ namespace OpenGrade
         {
             SettingsPageOpen(0);
             CalculateTotalCutFillLabels();
+            CalculateMinMaxZoom();
         }
         private void toolstripUSBPortsConfig_Click(object sender, EventArgs e)
         {
@@ -1059,7 +1060,7 @@ namespace OpenGrade
             if (fiveSecondCounter++ > 100) { fiveSecondCounter = 0; }
 
             //GPS Update rate
-            lblFixUpdateHz.Text = NMEAHz + " Hz " + FixQuality;
+            lblFixUpdateHz.Text = NMEAHz + " Hz " + FixQuality + " " + (int)(frameTime) + "ms";
 
             // update all status every 100 ms 10hz, was 4hz
             if (statusUpdateCounter > 1)
