@@ -472,7 +472,34 @@ namespace OpenGrade
 
                 //draw last pass if rec on
                 if (cboxRecLastOnOff.Checked & ct.ptList[closestPoint].cutAltitude > 0)
+                {
                     ct.ptList[closestPoint].lastPassAltitude = pn.altitude;
+                }
+
+                if (cboxRecLastOnOff.Checked)
+                {                
+                    int curSwathListCnt = ct.curSwathList.Count;
+                    if (curSwathListCnt > 0)
+                    {
+                        double SwathPtDist = (pn.easting - ct.curSwathList[curSwathListCnt - 1].easting) * (pn.easting - ct.curSwathList[curSwathListCnt - 1].easting) +
+                            (pn.northing - ct.curSwathList[curSwathListCnt - 1].northing) * (pn.northing - ct.curSwathList[curSwathListCnt - 1].northing);
+
+                        if (SwathPtDist > 1)
+                        {
+                            //fill the current swath list point
+                            CCurSwathPt point = new CCurSwathPt(pn.easting, fixHeading, pn.northing, ct.ptList[closestPoint].altitude, pn.latitude, pn.longitude, ct.ptList[closestPoint].cutAltitude, pn.altitude, ct.currentSwathNbr);
+                            ct.curSwathList.Add(point);
+                        }
+                    }
+                    else
+                    {
+                        //fill the current swath list point
+                        CCurSwathPt point = new CCurSwathPt(pn.easting, fixHeading, pn.northing, ct.ptList[closestPoint].altitude, pn.latitude, pn.longitude, ct.ptList[closestPoint].cutAltitude, pn.altitude, ct.currentSwathNbr);
+                        ct.curSwathList.Add(point);
+                    }
+                }
+                
+
 
                 //draw if on
                 if (cboxLastPass.Checked)
@@ -644,9 +671,12 @@ namespace OpenGrade
                 //B - C              
                 HorRealDist = 0;
 
-                for (int k = 0; k < (SlopeDistB + 1); k++)
+                if (ptcnt > 4)
                 {
-                    HorRealDist += ct.ptList[k].distance;
+                    for (int k = 0; k < (SlopeDistB + 1); k++)
+                    {
+                        HorRealDist += ct.ptList[k].distance;
+                    }
                 }
             }
           

@@ -343,6 +343,8 @@ namespace OpenGrade
             {
                 for (int i = 0; i < cnnt; i++) ct.ptList[i].lastPassAltitude = -1;
             }
+
+            ct.curSwathList.Clear();
         }
 
         private void btnZeroAltitude_Click(object sender, EventArgs e)

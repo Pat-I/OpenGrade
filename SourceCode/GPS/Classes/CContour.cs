@@ -35,6 +35,68 @@ namespace OpenGrade
         }
     }
 
+    public class CCurSwathPt
+    {
+        public double altitude { get; set; }
+        public double easting { get; set; }
+        public double northing { get; set; }
+        public double heading { get; set; }
+        public double cutAltitude { get; set; }
+        public double realPassAltitude { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+        public int swathNbr { get; set; }
+
+        //constructor
+        public CCurSwathPt(double _easting, double _heading, double _northing,
+                            double _altitude, double _lat, double _long,
+                            double _cutAltitude = -1, double _realPassAltitude = -1, int _swathNbr = 0)
+        {
+            easting = _easting;
+            northing = _northing;
+            heading = _heading;
+            altitude = _altitude;
+            latitude = _lat;
+            longitude = _long;
+
+            //optional parameters
+            cutAltitude = _cutAltitude;
+            realPassAltitude = _realPassAltitude;
+            swathNbr = _swathNbr;
+        }
+    }
+
+    public class CSwathPt
+    {
+        public double altitude { get; set; }
+        public double easting { get; set; }
+        public double northing { get; set; }
+        public double heading { get; set; }
+        public double cutAltitude { get; set; }
+        public double realPassAltitude { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+        public int swathNbr { get; set; }
+
+        //constructor
+        public CSwathPt(double _easting, double _heading, double _northing,
+                            double _altitude, double _lat, double _long,
+                            double _cutAltitude = -1, double _realPassAltitude = -1, int _swathNbr = 0)
+        {
+            easting = _easting;
+            northing = _northing;
+            heading = _heading;
+            altitude = _altitude;
+            latitude = _lat;
+            longitude = _long;
+
+            //optional parameters
+            cutAltitude = _cutAltitude;
+            realPassAltitude = _realPassAltitude;
+            swathNbr = _swathNbr;
+        }
+    }
+
     public class CContour
     {
         //copy of the mainform address
@@ -48,6 +110,12 @@ namespace OpenGrade
         public double zeroAltitudeRef = 0;
 
         public List<CContourPt> ptList = new List<CContourPt>();
+        public List<CCurSwathPt> curSwathList = new List<CCurSwathPt>();
+        public List<CSwathPt> swathList = new List<CSwathPt>();
+
+        //Variables for the swath lists
+        public int currentSwathNbr;
+
 
         //used to determine if section was off and now is on or vice versa
         public bool wasSectionOn;
@@ -374,6 +442,17 @@ namespace OpenGrade
             //gl.Vertex(boxD.easting, boxD.northing, 0);
             //gl.Vertex(boxA.easting, boxA.northing, 0);
             //gl.End();
+
+            //Draw the swath
+            int curSwathCnt = curSwathList.Count;
+            if (curSwathCnt > 0 & mf.isJobStarted)
+            {
+                gl.LineWidth(2);
+                gl.Color(0.1f, 0.95f, 0.05f);
+                gl.Begin(OpenGL.GL_LINE_STRIP);
+                for (int h = 0; h < curSwathCnt; h++) gl.Vertex(curSwathList[h].easting, curSwathList[h].northing, 0);
+                gl.End();
+            }
 
             ////draw the guidance line
             int ptCount = ptList.Count;
