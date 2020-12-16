@@ -193,6 +193,7 @@
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.lblFixUpdateHz = new System.Windows.Forms.Label();
+            this.btnSaveLastPass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -793,7 +794,7 @@
             this.stripEqWidth.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(405, 41);
+            this.stripEqWidth.Size = new System.Drawing.Size(436, 41);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             // 
@@ -1402,6 +1403,7 @@
             // controlPage2
             // 
             this.controlPage2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.controlPage2.Controls.Add(this.btnSaveLastPass);
             this.controlPage2.Controls.Add(this.label13);
             this.controlPage2.Controls.Add(this.btnSwitchAlt);
             this.controlPage2.Controls.Add(this.btnZeroAltitudeRef);
@@ -1505,7 +1507,7 @@
             this.cboxLastPass.BackColor = System.Drawing.Color.Transparent;
             this.cboxLastPass.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxLastPass.Image = global::OpenGrade.Properties.Resources.LastPassOnOff;
-            this.cboxLastPass.Location = new System.Drawing.Point(328, 6);
+            this.cboxLastPass.Location = new System.Drawing.Point(235, 6);
             this.cboxLastPass.Name = "cboxLastPass";
             this.cboxLastPass.Size = new System.Drawing.Size(90, 90);
             this.cboxLastPass.TabIndex = 221;
@@ -1520,7 +1522,7 @@
             this.cboxRecLastOnOff.BackColor = System.Drawing.Color.Transparent;
             this.cboxRecLastOnOff.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxRecLastOnOff.Image = global::OpenGrade.Properties.Resources.BoundaryRecord;
-            this.cboxRecLastOnOff.Location = new System.Drawing.Point(440, 6);
+            this.cboxRecLastOnOff.Location = new System.Drawing.Point(340, 6);
             this.cboxRecLastOnOff.Name = "cboxRecLastOnOff";
             this.cboxRecLastOnOff.Size = new System.Drawing.Size(90, 90);
             this.cboxRecLastOnOff.TabIndex = 222;
@@ -1534,7 +1536,7 @@
             this.cboxLaserModeOnOff.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxLaserModeOnOff.BackColor = System.Drawing.Color.Transparent;
             this.cboxLaserModeOnOff.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxLaserModeOnOff.Location = new System.Drawing.Point(39, 6);
+            this.cboxLaserModeOnOff.Location = new System.Drawing.Point(9, 6);
             this.cboxLaserModeOnOff.Name = "cboxLaserModeOnOff";
             this.cboxLaserModeOnOff.Size = new System.Drawing.Size(207, 90);
             this.cboxLaserModeOnOff.TabIndex = 242;
@@ -2162,6 +2164,21 @@
             this.lblFixUpdateHz.TabIndex = 227;
             this.lblFixUpdateHz.Text = "gps hz, fix, frame ms";
             // 
+            // btnSaveLastPass
+            // 
+            this.btnSaveLastPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveLastPass.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveLastPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSaveLastPass.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveLastPass.Image = global::OpenGrade.Properties.Resources.FileSave;
+            this.btnSaveLastPass.Location = new System.Drawing.Point(445, 6);
+            this.btnSaveLastPass.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnSaveLastPass.Name = "btnSaveLastPass";
+            this.btnSaveLastPass.Size = new System.Drawing.Size(90, 90);
+            this.btnSaveLastPass.TabIndex = 246;
+            this.btnSaveLastPass.UseVisualStyleBackColor = false;
+            this.btnSaveLastPass.Click += new System.EventHandler(this.btnSaveLastPass_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2399,6 +2416,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSimGoTo;
+        private System.Windows.Forms.Button btnSaveLastPass;
     }
 }
 

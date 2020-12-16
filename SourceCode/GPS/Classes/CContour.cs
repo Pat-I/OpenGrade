@@ -205,6 +205,45 @@ namespace OpenGrade
             isContourOn = false;
         }
 
+        //Save the swath to the main file
+        public void SaveSwathToList()
+        {
+            if (curSwathList.Count > 1)
+            {
+                int ptcnt = curSwathList.Count;
+
+                //check if swath number fit
+                if (swathList.Count > 0)
+                {
+                    int ptcount = swathList.Count;
+                    if (swathList[ptcount - 1].swathNbr != (currentSwathNbr-1))
+                    {                       
+                        var form = new FormTimedMessage(4000, "Error in swath number", "Report the error");
+                        form.Show();
+
+                        
+                    }
+                }
+
+                for (int h = 0; h < ptcnt; h++)
+                {
+                    //fill the current swath list point
+                    CSwathPt point = new CSwathPt(curSwathList[h].easting, curSwathList[h].heading, curSwathList[h].northing, curSwathList[h].altitude, curSwathList[h].latitude, curSwathList[h].longitude, curSwathList[h].cutAltitude, curSwathList[h].altitude, currentSwathNbr);
+                    swathList.Add(point);
+                }
+
+                currentSwathNbr++;
+                mf.FileSaveSwath();
+            }
+            curSwathList.Clear();
+        }
+
+        public void ClearSwathList()
+        {
+            swathList.Clear();
+            currentSwathNbr = 0;
+        }
+
         //determine distance from contour guidance line
         public void DistanceFromContourLine()
         {
@@ -451,6 +490,29 @@ namespace OpenGrade
                 gl.Color(0.1f, 0.95f, 0.05f);
                 gl.Begin(OpenGL.GL_LINE_STRIP);
                 for (int h = 0; h < curSwathCnt; h++) gl.Vertex(curSwathList[h].easting, curSwathList[h].northing, 0);
+                gl.End();
+            }
+
+            //Draw the swath
+            int SwathCnt = swathList.Count;
+            if (SwathCnt > 0 & mf.isJobStarted)
+            {
+                gl.LineWidth(2);
+                gl.Color(0.9f, 0.8f, 0.4f);
+                gl.Begin(OpenGL.GL_LINE_STRIP);
+                int swathNbr = 0;
+                for (int h = 0; h < SwathCnt; h++)
+                {
+                    if (swathNbr < swathList[h].swathNbr)
+                    {
+                        gl.End();
+                        gl.Begin(OpenGL.GL_LINE_STRIP);
+                        swathNbr = swathList[h].swathNbr;
+                    }
+                    
+                    gl.Vertex(swathList[h].easting, swathList[h].northing, 0);
+                    
+                }
                 gl.End();
             }
 

@@ -449,6 +449,88 @@ namespace OpenGrade
                 }
             }
 
+            // Swath points ----------------------------------------------------------------------------
+
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Swath.txt";
+            if (!File.Exists(fileAndDirectory))
+            {
+                var form = new FormTimedMessage(4000, "Missing Swaths", "But Field is Loaded");
+                form.Show();
+                //return;
+            }
+
+            /*
+                May-14-17  -->  7:42:47 PM
+                Points in Patch followed by easting, heading, northing, altitude
+                $SwathDir
+                cdert_May14
+                $Offsets
+                533631,5927279,12
+                19
+                2.866,2.575,-4.07,0             
+             */
+            else
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read the lines and skip them
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        while (!reader.EndOfStream)
+                        {
+                            //read how many vertices in the following patch
+                            line = reader.ReadLine();
+                            int verts = int.Parse(line);
+                            //CContourPt vecFix = new vec4(0, 0, 0, 0);
+
+                            for (int v = 0; v < verts; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+
+                                CSwathPt point = new CSwathPt(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture),
+                                    double.Parse(words[3], CultureInfo.InvariantCulture),
+                                    double.Parse(words[4], CultureInfo.InvariantCulture),
+                                    double.Parse(words[5], CultureInfo.InvariantCulture),
+                                    double.Parse(words[6], CultureInfo.InvariantCulture),
+                                    double.Parse(words[7], CultureInfo.InvariantCulture),
+                                    int.Parse(words[8], CultureInfo.InvariantCulture));
+
+                                ct.swathList.Add(point);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        WriteErrorLog("Loading Contour file" + e.ToString());
+
+                        var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
+                        form.Show();
+                    }
+
+                    //calc mins maxes
+                    //CalculateMinMaxZoom();
+                    //CalculateTotalCutFillLabels();
+                    
+                    if (ct.swathList.Count > 0)
+                    {
+                        int listcnt = ct.swathList.Count;
+                        ct.currentSwathNbr = ct.swathList[listcnt - 1].swathNbr;
+                        ct.currentSwathNbr++;
+                    }
+                }
+            }
+
             // Contour points ----------------------------------------------------------------------------
 
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
@@ -806,7 +888,7 @@ namespace OpenGrade
             {
                 //Write out the date
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
-                writer.WriteLine("Points in Patch followed by easting, heading, northing, altitude");
+                writer.WriteLine("Points in Patch followed by easting, heading, northing, altitude, latitude, longitude, cutAltitude, lastPassAltitude, distance");
 
                 //which field directory
                 writer.WriteLine("$ContourDir");
@@ -843,6 +925,72 @@ namespace OpenGrade
             }
             //set saving flag off
             isSavingFile = false;
+        }
+
+        //save the contour points which include elevation values
+        public void FileSaveSwath()
+        {
+            //1  - points in patch
+            //64.697,0.168,-21.654,0 - east, heading, north, altitude
+            //Saturday, February 11, 2017  -->  7:26:52 AM
+            //12  - points in patch
+            //64.697,0.168,-21.654,0 - east, heading, north, altitude
+            //$ContourDir
+            //Bob_Feb11
+            //$Offsets
+            //533172,5927719,12
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName = "Swath.txt";
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //Write out the date
+                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
+                writer.WriteLine("Points in Patch followed by easting, heading, northing, altitude, latitude, longitude, cutAltitude, realPassAltitude, SwathNbr");
+
+                //which field directory
+                writer.WriteLine("$SwathDir");
+                writer.WriteLine(currentFieldDirectory);
+
+                //write out the easting and northing Offsets
+                writer.WriteLine("$Offsets");
+                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) +
+                    "," + pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + pn.zone.ToString(CultureInfo.InvariantCulture));
+
+
+                //make sure there is something to save
+                if (ct.swathList.Count() > 0)
+                {
+                    int count2 = ct.swathList.Count;
+
+                    //for every new chunk of patch in the whole section
+
+                    writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
+
+                    for (int i = 0; i < count2; i++)
+                    {
+                        writer.WriteLine(Math.Round((ct.swathList[i].easting), 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].altitude, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].latitude, 9).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].longitude, 9).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].cutAltitude, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(ct.swathList[i].realPassAltitude, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            ct.swathList[i].swathNbr);
+                    }
+                }
+            }
+            //set saving flag off
+            //isSavingFile = false;
         }
 
         //save all the flag markers

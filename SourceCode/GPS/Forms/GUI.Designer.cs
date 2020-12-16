@@ -208,6 +208,8 @@ namespace OpenGrade
                     lblCutFillRatio.Text = "*";
                     lblDrawSlope.Text = "*";
 
+                    ct.SaveSwathToList();
+
                     cboxLastPass.Checked = false;
                     cboxRecLastOnOff.Checked = false;
                     cboxLaserModeOnOff.Checked = false;

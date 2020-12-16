@@ -767,6 +767,11 @@ namespace OpenGrade
             else cboxRecLastOnOff.BackColor = System.Drawing.Color.Transparent;
         }
 
+        private void btnSaveLastPass_Click(object sender, EventArgs e)
+        {
+            ct.SaveSwathToList();
+        }
+
 
 
 
@@ -1019,6 +1024,8 @@ namespace OpenGrade
 
             //clear out the contour Lists
             ct.ResetContour();
+            ct.ClearSwathList();
+            ct.curSwathList.Clear();
 
             //clear the flags
             flagPts.Clear();
