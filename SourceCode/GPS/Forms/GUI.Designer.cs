@@ -216,6 +216,7 @@ namespace OpenGrade
                     btnDoneDraw.Enabled = false;
                     btnDeleteLastPoint.Enabled = false;
                     btnStartDraw.Enabled = false;
+                    btnReversePtList.Enabled = false;
 
 
                     break;
@@ -228,6 +229,7 @@ namespace OpenGrade
                     btnDoneDraw.Enabled = false;
                     btnDeleteLastPoint.Enabled = false;
                     btnStartDraw.Enabled = true;
+                    btnReversePtList.Enabled = true;
 
                     break;
             }
@@ -400,6 +402,7 @@ namespace OpenGrade
                 btnDeleteLastPoint.Enabled = true;
                 btnStartDraw.Enabled = false;
                 btnSendCutLine.Enabled = false;
+                btnReversePtList.Enabled = false;
             }
             else TimedMessageBox(1500, "No Surveyed Points", "Survey a Contour First");
         }
@@ -409,6 +412,7 @@ namespace OpenGrade
             btnDeleteLastPoint.Enabled = false;
             btnStartDraw.Enabled = true;
             btnSendCutLine.Enabled = true;
+            btnReversePtList.Enabled = true;
 
             ct.isDrawingRefLine = false;
             int cnt = ct.ptList.Count;

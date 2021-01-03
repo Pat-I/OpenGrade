@@ -763,13 +763,22 @@ namespace OpenGrade
 
         private void cboxRecLastOnOff_CheckStateChanged(object sender, EventArgs e)
         {
-            if (cboxRecLastOnOff.Checked) cboxRecLastOnOff.BackColor = System.Drawing.Color.GreenYellow;
+            if (cboxRecLastOnOff.Checked)
+            {
+                cboxRecLastOnOff.BackColor = System.Drawing.Color.GreenYellow;
+                
+            }
             else cboxRecLastOnOff.BackColor = System.Drawing.Color.Transparent;
         }
 
         private void btnSaveLastPass_Click(object sender, EventArgs e)
         {
             ct.SaveSwathToList();
+        }
+
+        private void btnReversePtList_Click(object sender, EventArgs e)
+        {
+            ct.InvertPtList();
         }
 
 
@@ -1015,6 +1024,8 @@ namespace OpenGrade
         //close the current job
         public void JobClose()
         {
+            FileSaveSwathKML();
+
             //turn manual button off
             manualBtnState = btnStates.Off;
             btnManualOffOn.Image = Properties.Resources.ManualOff;

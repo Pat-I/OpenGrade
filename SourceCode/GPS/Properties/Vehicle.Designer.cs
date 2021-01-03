@@ -12,7 +12,7 @@ namespace OpenGrade.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Vehicle : global::System.Configuration.ApplicationSettingsBase {
         
         private static Vehicle defaultInstance = ((Vehicle)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Vehicle())));
@@ -260,6 +260,54 @@ namespace OpenGrade.Properties {
             }
             set {
                 this["setVehicle_MaxCuttingDepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_minDepthRefLine {
+            get {
+                return ((double)(this["setVehicle_minDepthRefLine"]));
+            }
+            set {
+                this["setVehicle_minDepthRefLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_idealDepthRefLine {
+            get {
+                return ((double)(this["setVehicle_idealDepthRefLine"]));
+            }
+            set {
+                this["setVehicle_idealDepthRefLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_maxDepthRefLine {
+            get {
+                return ((double)(this["setVehicle_maxDepthRefLine"]));
+            }
+            set {
+                this["setVehicle_maxDepthRefLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setVehicle_ShowDepthRefLine {
+            get {
+                return ((bool)(this["setVehicle_ShowDepthRefLine"]));
+            }
+            set {
+                this["setVehicle_ShowDepthRefLine"] = value;
             }
         }
     }

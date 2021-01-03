@@ -442,11 +442,44 @@ namespace OpenGrade
                 }
                 gl.End();
 
-                //cut line drawn in full
-                int cutPts = ct.ptList.Count;
-                if (cutPts > 0)
+                //draw the depth ref lines
+                if (vehicle.showDepthRefLine)
                 {
-                    gl.Color(0.974f, 0.0f, 0.12f);
+                    gl.LineWidth(1);
+                    // draw the min line
+                    gl.Color(0.974f, 0.5f, 0.25f);
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int i = 0; i < ptCnt; i++)
+                    {
+                            gl.Vertex(i, (((ct.ptList[i].altitude - centerY - vehicle.minDepthRefLine) * altitudeWindowGain) + centerY), 0);
+                    }
+                    gl.End();
+
+                    // draw the ideal line
+                    gl.Color(0.0f, 0.99f, 0.0f);
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int i = 0; i < ptCnt; i++)
+                    {
+                        gl.Vertex(i, (((ct.ptList[i].altitude - centerY - vehicle.idealDepthRefLine) * altitudeWindowGain) + centerY), 0);
+                    }
+                    gl.End();
+
+                    // draw the max line
+                    gl.Color(0.974f, 0.5f, 0.25f);
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int i = 0; i < ptCnt; i++)
+                    {
+                        gl.Vertex(i, (((ct.ptList[i].altitude - centerY - vehicle.maxDepthRefLine) * altitudeWindowGain) + centerY), 0);
+                    }
+                    gl.End();
+                }
+
+                //cut line drawn in full
+                //int cutPts = ct.ptList.Count;
+                //if (cutPts > 0)
+                //{
+                gl.LineWidth(4);
+                gl.Color(0.974f, 0.0f, 0.12f);
                     gl.Begin(OpenGL.GL_LINE_STRIP);
                     for (int i = 0; i < ptCnt; i++)
                     {
@@ -454,7 +487,7 @@ namespace OpenGrade
                             gl.Vertex(i, (((ct.ptList[i].cutAltitude - centerY) * altitudeWindowGain) + centerY), 0);
                     }
                     gl.End();
-                }
+                //}
 
                 //crosshairs same spot as mouse - long
                 gl.LineWidth(2);

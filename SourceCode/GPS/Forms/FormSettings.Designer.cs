@@ -47,6 +47,14 @@
             this.label18 = new System.Windows.Forms.Label();
             this.nudAntennaHeight = new System.Windows.Forms.NumericUpDown();
             this.tabDisplay = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.chkBoxShowRefDesignLine = new System.Windows.Forms.CheckBox();
+            this.nudMinDepth = new System.Windows.Forms.NumericUpDown();
+            this.nudIdealDepth = new System.Windows.Forms.NumericUpDown();
+            this.nudMaxDepth = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.nudViewDistUnderGnd = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
@@ -83,6 +91,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudToolWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
             this.tabDisplay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinDepth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdealDepth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxDepth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewDistUnderGnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewDistAboveGnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGradeDistFromLine)).BeginInit();
@@ -271,6 +282,14 @@
             // 
             // tabDisplay
             // 
+            this.tabDisplay.Controls.Add(this.label27);
+            this.tabDisplay.Controls.Add(this.label23);
+            this.tabDisplay.Controls.Add(this.label21);
+            this.tabDisplay.Controls.Add(this.label19);
+            this.tabDisplay.Controls.Add(this.chkBoxShowRefDesignLine);
+            this.tabDisplay.Controls.Add(this.nudMinDepth);
+            this.tabDisplay.Controls.Add(this.nudIdealDepth);
+            this.tabDisplay.Controls.Add(this.nudMaxDepth);
             this.tabDisplay.Controls.Add(this.label24);
             this.tabDisplay.Controls.Add(this.nudViewDistUnderGnd);
             this.tabDisplay.Controls.Add(this.label20);
@@ -281,6 +300,81 @@
             resources.ApplyResources(this.tabDisplay, "tabDisplay");
             this.tabDisplay.Name = "tabDisplay";
             this.tabDisplay.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // chkBoxShowRefDesignLine
+            // 
+            resources.ApplyResources(this.chkBoxShowRefDesignLine, "chkBoxShowRefDesignLine");
+            this.chkBoxShowRefDesignLine.Name = "chkBoxShowRefDesignLine";
+            this.chkBoxShowRefDesignLine.UseVisualStyleBackColor = true;
+            this.chkBoxShowRefDesignLine.CheckStateChanged += new System.EventHandler(this.chkBoxShowRefDesignLine_CheckStateChanged);
+            // 
+            // nudMinDepth
+            // 
+            resources.ApplyResources(this.nudMinDepth, "nudMinDepth");
+            this.nudMinDepth.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudMinDepth.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.nudMinDepth.Name = "nudMinDepth";
+            this.nudMinDepth.ValueChanged += new System.EventHandler(this.nudMinDepth_ValueChanged);
+            // 
+            // nudIdealDepth
+            // 
+            resources.ApplyResources(this.nudIdealDepth, "nudIdealDepth");
+            this.nudIdealDepth.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudIdealDepth.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.nudIdealDepth.Name = "nudIdealDepth";
+            this.nudIdealDepth.ValueChanged += new System.EventHandler(this.nudIdealDepth_ValueChanged);
+            // 
+            // nudMaxDepth
+            // 
+            resources.ApplyResources(this.nudMaxDepth, "nudMaxDepth");
+            this.nudMaxDepth.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudMaxDepth.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.nudMaxDepth.Name = "nudMaxDepth";
+            this.nudMaxDepth.ValueChanged += new System.EventHandler(this.nudMaxDepth_ValueChanged);
             // 
             // label24
             // 
@@ -600,6 +694,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
             this.tabDisplay.ResumeLayout(false);
             this.tabDisplay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinDepth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdealDepth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxDepth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewDistUnderGnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewDistAboveGnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGradeDistFromLine)).EndInit();
@@ -667,5 +764,13 @@
         private System.Windows.Forms.NumericUpDown nudGradeDistFromLine;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.NumericUpDown nudMaxCuttingDepth;
+        private System.Windows.Forms.CheckBox chkBoxShowRefDesignLine;
+        private System.Windows.Forms.NumericUpDown nudMinDepth;
+        private System.Windows.Forms.NumericUpDown nudIdealDepth;
+        private System.Windows.Forms.NumericUpDown nudMaxDepth;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label27;
     }
 }

@@ -41,6 +41,10 @@ namespace OpenGrade
         public double viewDistUnderGnd;
         public double viewDistAboveGnd;
         public double gradeDistFromLine;
+        public double minDepthRefLine;
+        public double idealDepthRefLine;
+        public double maxDepthRefLine;
+        public bool showDepthRefLine;
 
         public CVehicle(OpenGL _gl, FormGPS _f)
         {
@@ -63,7 +67,11 @@ namespace OpenGrade
             viewDistUnderGnd = Properties.Vehicle.Default.setVehicle_ViewDistUnderGnd;
             viewDistAboveGnd = Properties.Vehicle.Default.setVehicle_ViewDistAboveGnd;
             gradeDistFromLine = Properties.Vehicle.Default.setVehicle_GradeDistFromLine;
-        }
+            minDepthRefLine = Properties.Vehicle.Default.setVehicle_minDepthRefLine;
+            idealDepthRefLine = Properties.Vehicle.Default.setVehicle_idealDepthRefLine;
+            maxDepthRefLine = Properties.Vehicle.Default.setVehicle_maxDepthRefLine;
+            showDepthRefLine = Properties.Vehicle.Default.setVehicle_ShowDepthRefLine;
+    }
 
         public void DrawVehicle()
         {

@@ -114,6 +114,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.btnReversePtList = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btnSendCutLine = new System.Windows.Forms.Button();
             this.nudMoveCutLine = new System.Windows.Forms.NumericUpDown();
@@ -143,6 +144,7 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnSnap = new System.Windows.Forms.Button();
             this.controlPage2 = new System.Windows.Forms.TabPage();
+            this.btnSaveLastPass = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.btnSwitchAlt = new System.Windows.Forms.Button();
             this.btnZeroAltitudeRef = new System.Windows.Forms.Button();
@@ -193,7 +195,6 @@
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.lblFixUpdateHz = new System.Windows.Forms.Label();
-            this.btnSaveLastPass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -1029,6 +1030,7 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.btnReversePtList);
             this.DataPage.Controls.Add(this.label14);
             this.DataPage.Controls.Add(this.btnSendCutLine);
             this.DataPage.Controls.Add(this.nudMoveCutLine);
@@ -1060,6 +1062,20 @@
             this.DataPage.Name = "DataPage";
             this.DataPage.Size = new System.Drawing.Size(667, 255);
             this.DataPage.TabIndex = 3;
+            // 
+            // btnReversePtList
+            // 
+            this.btnReversePtList.BackColor = System.Drawing.Color.Lavender;
+            this.btnReversePtList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReversePtList.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReversePtList.Location = new System.Drawing.Point(11, 156);
+            this.btnReversePtList.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnReversePtList.Name = "btnReversePtList";
+            this.btnReversePtList.Size = new System.Drawing.Size(84, 84);
+            this.btnReversePtList.TabIndex = 189;
+            this.btnReversePtList.Text = "reverse <-->";
+            this.btnReversePtList.UseVisualStyleBackColor = false;
+            this.btnReversePtList.Click += new System.EventHandler(this.btnReversePtList_Click);
             // 
             // label14
             // 
@@ -1105,7 +1121,7 @@
             this.btnStartDraw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnStartDraw.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartDraw.Image = global::OpenGrade.Properties.Resources.PointStart;
-            this.btnStartDraw.Location = new System.Drawing.Point(33, 156);
+            this.btnStartDraw.Location = new System.Drawing.Point(113, 156);
             this.btnStartDraw.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnStartDraw.Name = "btnStartDraw";
             this.btnStartDraw.Size = new System.Drawing.Size(84, 84);
@@ -1150,7 +1166,7 @@
             this.btnDeleteLastPoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDeleteLastPoint.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteLastPoint.Image = global::OpenGrade.Properties.Resources.PointDelete;
-            this.btnDeleteLastPoint.Location = new System.Drawing.Point(161, 156);
+            this.btnDeleteLastPoint.Location = new System.Drawing.Point(209, 156);
             this.btnDeleteLastPoint.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDeleteLastPoint.Name = "btnDeleteLastPoint";
             this.btnDeleteLastPoint.Size = new System.Drawing.Size(84, 84);
@@ -1164,7 +1180,7 @@
             this.btnDoneDraw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDoneDraw.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDoneDraw.Image = global::OpenGrade.Properties.Resources.PointDone;
-            this.btnDoneDraw.Location = new System.Drawing.Point(294, 156);
+            this.btnDoneDraw.Location = new System.Drawing.Point(305, 156);
             this.btnDoneDraw.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDoneDraw.Name = "btnDoneDraw";
             this.btnDoneDraw.Size = new System.Drawing.Size(84, 84);
@@ -1419,6 +1435,21 @@
             this.controlPage2.Name = "controlPage2";
             this.controlPage2.Size = new System.Drawing.Size(667, 255);
             this.controlPage2.TabIndex = 4;
+            // 
+            // btnSaveLastPass
+            // 
+            this.btnSaveLastPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveLastPass.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveLastPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSaveLastPass.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveLastPass.Image = global::OpenGrade.Properties.Resources.FileSave;
+            this.btnSaveLastPass.Location = new System.Drawing.Point(445, 6);
+            this.btnSaveLastPass.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnSaveLastPass.Name = "btnSaveLastPass";
+            this.btnSaveLastPass.Size = new System.Drawing.Size(90, 90);
+            this.btnSaveLastPass.TabIndex = 246;
+            this.btnSaveLastPass.UseVisualStyleBackColor = false;
+            this.btnSaveLastPass.Click += new System.EventHandler(this.btnSaveLastPass_Click);
             // 
             // label13
             // 
@@ -2164,21 +2195,6 @@
             this.lblFixUpdateHz.TabIndex = 227;
             this.lblFixUpdateHz.Text = "gps hz, fix, frame ms";
             // 
-            // btnSaveLastPass
-            // 
-            this.btnSaveLastPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveLastPass.BackColor = System.Drawing.Color.Transparent;
-            this.btnSaveLastPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSaveLastPass.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveLastPass.Image = global::OpenGrade.Properties.Resources.FileSave;
-            this.btnSaveLastPass.Location = new System.Drawing.Point(445, 6);
-            this.btnSaveLastPass.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.btnSaveLastPass.Name = "btnSaveLastPass";
-            this.btnSaveLastPass.Size = new System.Drawing.Size(90, 90);
-            this.btnSaveLastPass.TabIndex = 246;
-            this.btnSaveLastPass.UseVisualStyleBackColor = false;
-            this.btnSaveLastPass.Click += new System.EventHandler(this.btnSaveLastPass_Click);
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2417,6 +2433,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSimGoTo;
         private System.Windows.Forms.Button btnSaveLastPass;
+        private System.Windows.Forms.Button btnReversePtList;
     }
 }
 

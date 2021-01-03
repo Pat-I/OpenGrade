@@ -205,6 +205,66 @@ namespace OpenGrade
             isContourOn = false;
         }
 
+        // Invert ptList pts
+        public void InvertPtList()
+        {
+            if (ptList.Count > 4)
+            {
+                //ptList.Reverse(); //No because we have to change the heading
+                
+                int ptcnt = ptList.Count;
+                for(int h = 0; h<= (ptcnt/2 -1); h++)
+                {
+                    double tempEasting = ptList[h].easting;
+                    double tempHeading = ptList[h].heading;
+                    double tempNorthing = ptList[h].northing;
+                    double tempAltitude = ptList[h].altitude;
+                    double tempLatitude = ptList[h].latitude;
+                    double tempLongitude = ptList[h].longitude;
+                    double tempCutAltitude = ptList[h].cutAltitude;
+                    double tempLastPassAltitude = ptList[h].lastPassAltitude;
+                    //double tempDistance = ptList[h].distance;
+
+                    tempHeading += Math.PI;
+                    if (tempHeading >= glm.twoPI) tempHeading -= glm.twoPI;
+
+                    ptList[h].easting = ptList[ptcnt - 1 - h].easting;
+                    double tempSecondHeading = ptList[ptcnt - 1 - h].heading;
+                    tempSecondHeading += Math.PI;
+                    if (tempSecondHeading >= glm.twoPI) tempSecondHeading -= glm.twoPI;
+                    ptList[h].heading = tempSecondHeading;
+                    ptList[h].northing = ptList[ptcnt - 1 - h].northing;
+                    ptList[h].altitude = ptList[ptcnt - 1 - h].altitude;
+                    ptList[h].latitude = ptList[ptcnt - 1 - h].latitude;
+                    ptList[h].longitude = ptList[ptcnt - 1 - h].longitude;
+                    ptList[h].cutAltitude = ptList[ptcnt - 1 - h].cutAltitude;
+                    ptList[h].lastPassAltitude = ptList[ptcnt - 1 - h].lastPassAltitude;
+                    //ptList[h].distance = ptList[ptcnt - 1 - h].distance;
+
+                    ptList[ptcnt - 1 - h].easting = tempEasting;
+                    ptList[ptcnt - 1 - h].heading = tempHeading;
+                    ptList[ptcnt - 1 - h].northing = tempNorthing;
+                    ptList[ptcnt - 1 - h].altitude = tempAltitude;
+                    ptList[ptcnt - 1 - h].latitude = tempLatitude;
+                    ptList[ptcnt - 1 - h].longitude = tempLongitude;
+                    ptList[ptcnt - 1 - h].cutAltitude = tempCutAltitude;
+                    ptList[ptcnt - 1 - h].lastPassAltitude = tempLastPassAltitude;
+                    //ptList[ptcnt - 1 - h].distance = tempDistance;
+                }
+
+                // Calculate the distance
+                int cnt = ptList.Count;
+                if (cnt > 0)
+                {
+                    ptList[0].distance = 0;
+                    for (int i = 0; i < cnt - 1; i++)
+                    {
+                        ptList[i + 1].distance = mf.pn.Distance(ptList[i].northing, ptList[i].easting, ptList[i + 1].northing, ptList[i + 1].easting);
+                    }
+                }
+
+            }
+        }
         //Save the swath to the main file
         public void SaveSwathToList()
         {
@@ -228,7 +288,7 @@ namespace OpenGrade
                 for (int h = 0; h < ptcnt; h++)
                 {
                     //fill the current swath list point
-                    CSwathPt point = new CSwathPt(curSwathList[h].easting, curSwathList[h].heading, curSwathList[h].northing, curSwathList[h].altitude, curSwathList[h].latitude, curSwathList[h].longitude, curSwathList[h].cutAltitude, curSwathList[h].altitude, currentSwathNbr);
+                    CSwathPt point = new CSwathPt(curSwathList[h].easting, curSwathList[h].heading, curSwathList[h].northing, curSwathList[h].altitude, curSwathList[h].latitude, curSwathList[h].longitude, curSwathList[h].cutAltitude, curSwathList[h].realPassAltitude, currentSwathNbr);
                     swathList.Add(point);
                 }
 

@@ -11,9 +11,10 @@ namespace OpenGrade
        //class variables
         private readonly FormGPS mf = null;
 
-        private double antennaHeight, minSlope, toolWidth, viewDistUnderGnd, viewDistAboveGnd, gradeDistFromLine, maxCuttingDepth;
+        private double antennaHeight, minSlope, toolWidth, viewDistUnderGnd, viewDistAboveGnd, gradeDistFromLine, maxCuttingDepth, minDepthRefLine, idealDepthRefLine, maxDepthRefLine;
         private byte PwmGainUp, PwmGainDown, PwmMaxUp, PwmMaxDown, PwmMinUp, PwmMinDown, IntegralMultiplier, Deadband;
         private readonly double metImp2m, m2MetImp, metFt2m, m2metFt;
+        private bool showRefDesignLine;
 
         //constructor
         public FormSettings(Form callingForm, int page)
@@ -115,6 +116,10 @@ namespace OpenGrade
             viewDistUnderGnd = Properties.Vehicle.Default.setVehicle_ViewDistUnderGnd;
             viewDistAboveGnd = Properties.Vehicle.Default.setVehicle_ViewDistAboveGnd;
             gradeDistFromLine = Properties.Vehicle.Default.setVehicle_GradeDistFromLine;
+            minDepthRefLine = Properties.Vehicle.Default.setVehicle_minDepthRefLine;
+            idealDepthRefLine = Properties.Vehicle.Default.setVehicle_idealDepthRefLine;
+            maxDepthRefLine = Properties.Vehicle.Default.setVehicle_maxDepthRefLine;
+            showRefDesignLine = Properties.Vehicle.Default.setVehicle_ShowDepthRefLine;
 
             nudViewDistUnderGnd.ValueChanged -= nudViewDistUnderGnd_ValueChanged;
             nudViewDistUnderGnd.Value = (decimal)(viewDistUnderGnd * m2MetImp);
@@ -128,7 +133,19 @@ namespace OpenGrade
             nudGradeDistFromLine.Value = (decimal)(gradeDistFromLine * m2metFt);
             nudGradeDistFromLine.ValueChanged += nudGradeDistFromLine_ValueChanged;
 
+            nudMinDepth.ValueChanged -= nudMinDepth_ValueChanged;
+            nudMinDepth.Value = (decimal)(minDepthRefLine * m2MetImp);
+            nudMinDepth.ValueChanged += nudMinDepth_ValueChanged;
 
+            nudIdealDepth.ValueChanged -= nudIdealDepth_ValueChanged;
+            nudIdealDepth.Value = (decimal)(idealDepthRefLine * m2MetImp);
+            nudIdealDepth.ValueChanged += nudIdealDepth_ValueChanged;
+
+            nudMaxDepth.ValueChanged -= nudMaxDepth_ValueChanged;
+            nudMaxDepth.Value = (decimal)(maxDepthRefLine * m2MetImp);
+            nudMaxDepth.ValueChanged += nudMaxDepth_ValueChanged;
+
+            chkBoxShowRefDesignLine.Checked = showRefDesignLine;
         }
 
 
@@ -158,6 +175,18 @@ namespace OpenGrade
 
             mf.vehicle.gradeDistFromLine = gradeDistFromLine;
             Properties.Vehicle.Default.setVehicle_GradeDistFromLine = mf.vehicle.gradeDistFromLine;
+
+            mf.vehicle.minDepthRefLine = minDepthRefLine;
+            Properties.Vehicle.Default.setVehicle_minDepthRefLine = mf.vehicle.minDepthRefLine;
+
+            mf.vehicle.idealDepthRefLine = idealDepthRefLine;
+            Properties.Vehicle.Default.setVehicle_idealDepthRefLine = mf.vehicle.idealDepthRefLine;
+
+            mf.vehicle.maxDepthRefLine = maxDepthRefLine;
+            Properties.Vehicle.Default.setVehicle_maxDepthRefLine = mf.vehicle.maxDepthRefLine;
+
+            mf.vehicle.showDepthRefLine = showRefDesignLine;
+            Properties.Vehicle.Default.setVehicle_ShowDepthRefLine = mf.vehicle.showDepthRefLine;
 
             //Valve settings ---------------------------------------------------------------------------------
 
@@ -225,6 +254,13 @@ namespace OpenGrade
 
 
         }
+
+        
+
+
+
+
+
 
         #region Vehicle //----------------------------------------------------------------
 
@@ -328,6 +364,25 @@ namespace OpenGrade
             gradeDistFromLine = (double)nudGradeDistFromLine.Value * metFt2m;
         }
 
+        private void nudMinDepth_ValueChanged(object sender, EventArgs e)
+        {
+            minDepthRefLine = (double)nudMinDepth.Value * metImp2m;
+        }
+
+        private void nudIdealDepth_ValueChanged(object sender, EventArgs e)
+        {
+            idealDepthRefLine = (double)nudIdealDepth.Value * metImp2m;
+        }
+
+        private void nudMaxDepth_ValueChanged(object sender, EventArgs e)
+        {
+            maxDepthRefLine = (double)nudMaxDepth.Value * metImp2m;
+        }
+
+        private void chkBoxShowRefDesignLine_CheckStateChanged(object sender, EventArgs e)
+        {
+            showRefDesignLine = chkBoxShowRefDesignLine.Checked;
+        }
 
         #endregion Display
 
